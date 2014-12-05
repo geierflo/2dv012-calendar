@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">  
+
+  <h:head>
+	<title>..</title>
+	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="scripts.js"></script>
+    </h:head>
+    
+<h:body>
+
+<div id="wrapper">
+<div id="header">
+</div>
+
+<div id="container">
+<div id="content">
+
+	<h1 id="Days"></h1>
+	<br />
+	<h:graphicImage value="Resources/santa.png" rendered="#{user.getuserName()==null}" />
+
+</div>
+
+<div id="sidebar">
+<h:form id="loginForm">  
+<h:outputText value="Username: " />  
+                    <h:inputText id="inputName" value="#{user.userName}"  
+                            required="true" requiredMessage="Name field must not be empty" />  
+                    
+                    <h:message for="inputName" style="color:red" />
+   	
+   	<h:outputText value="Enter password :" /> 
+                    <h:inputSecret id="inputPassword" value="#{user.password}"  
+                            required="true"  
+                            requiredMessage="Password field must not be empty" /> 
+                    <h:message for="inputPassword" style="color:red" />
+<h:commandButton value="Sign In" action="#{user.login}" />
+</h:form> 
+
+</div>
+
+</div>
+</div>
+
+
+<div id="footer">
+
+</div>
+</h:body>  
+</html>  

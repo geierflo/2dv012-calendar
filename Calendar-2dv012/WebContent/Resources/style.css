@@ -1,0 +1,121 @@
+html {    
+
+}
+
+body {
+    
+    background-image: url("snowflake.png");
+    background-repeat: repeat;
+    font-family:"Segoe UI";
+    color:#c00;
+
+
+}
+
+#wrapper {
+	
+	max-width: 1000px;
+    width:1000px;
+    margin:0 auto;
+    margin-top:0px;
+	background-color:#B30009;
+	border: 2px solid;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+	padding-bottom: 60px;
+	display:block;
+	overflow:auto;
+	margin-bottom:60px;
+}
+
+
+#logo {
+    
+    background-image: none;
+    position: relative;
+    height:150px;
+    
+}
+
+#nav {
+    float: left;
+    background-color: #FFF;
+    width:100%;
+}
+
+#nav ul {
+	
+	margin-left:0px;
+	
+}
+
+#nav li {
+    list-style-type: none;
+    float: left; 
+}
+
+#nav li a {
+      display: block;
+      margin-right:20px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #B30009;
+      border-bottom:3px solid #FFF;
+      
+   }
+   
+#nav li a:hover {
+	
+      border-bottom:3px solid #B30009;
+
+}
+
+
+
+#header {
+	
+	
+}
+   
+#container {
+	
+        padding-bottom:60px;
+        max-width:1000px;
+
+}
+
+
+#content {
+    
+    margin-left:20px;
+    border:1px solid #c0c0c0;
+	border-radius: 25px;
+    width: 60%;
+    padding:20px;
+    padding-bottom: 40px;
+    float:left;
+    background-color:#fff;
+    border-top:1px solid #fff;
+
+}
+
+#sidebar {
+	
+    margin-top: 90px;
+	border:1px solid #c0c0c0;
+	border-radius: 25px;
+	margin-left:70%;
+    padding: 20px;
+	width: 230px;
+	background-color:white;
+	
+}
+
+h2 {
+
+margin: 10px;
+margin-left:0px;
+margin-top: 0;
+    
+}
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core">  
+  
+<head>
+    <title><h:outputText value="#{msg.welcomeTitle}" /></title>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+<script> 
+$(function(){
+  $("#header").load("header.xhtml"); 
+  $("#footer").load("footer.xhtml"); 
+});
+</script>
+</head> 
+ 
+<h:body>  
+<div id="header"></div>
+    
+<div id="content"></div>
+
+<img src="Data/images.ico" alt="" align="left" style="width: 325px; height: 219px"/>
+ 
+    <f:view>  
+        <p>Successfully logged in</p>  
+        <p>Hi, #{user.userName}</p>  
+        <h:form>  
+            <p>  
+                <h:commandLink value="logout" action="#{user.logout}" />  
+            </p>  
+        </h:form>  
+    </f:view>  
+</h:body>  
+</html>  
