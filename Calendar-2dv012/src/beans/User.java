@@ -125,21 +125,9 @@ public class User {
 
 	public String login() {
 		dbData(userName);
-		FacesContext context = FacesContext.getCurrentInstance();
-	    HttpServletRequest request = (HttpServletRequest) 
-	        context.getExternalContext().getRequest();
-	    
 		if (userName.equals(dbName) && hash(password).equals(dbPassword)) {
-			
-			try {
-			    request.login(userName,password);
 				return "output";  
-
-			    } catch (ServletException e) {
-			    	e.printStackTrace();
-			      return "invalid";
 			    }
-			}
 		return "invalid";
 	}  
 
