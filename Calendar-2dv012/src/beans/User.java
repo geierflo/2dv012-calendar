@@ -1,6 +1,6 @@
 package beans;  
 
-import java.io.UnsupportedEncodingException;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;  
@@ -11,18 +11,18 @@ import java.sql.SQLException;
 
 
 
+
 import javax.faces.bean.ManagedBean;  
 import javax.faces.bean.RequestScoped;  
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;  
 import javax.naming.Context;  
 import javax.naming.InitialContext;  
 import javax.naming.NamingException;  
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;  
 
 @ManagedBean(name = "user")  
-@RequestScoped  
+@SessionScoped  
 public class User {  
 
 	private String userName;  
