@@ -1,43 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-  
-<faces-config xmlns="http://java.sun.com/xml/ns/javaee"  
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"  
-    version="2.0">  
-    <application>  
-        <message-bundle>resources.application</message-bundle>  
-        <locale-config>  
-            <default-locale>en</default-locale>  
-        </locale-config>  
-    </application>  
-    <navigation-rule>  
-        <description>login user</description>  
-        <from-view-id>/home.xhtml</from-view-id>  
-        <navigation-case>  
-            <from-action>#{user.login}</from-action>  
-            <from-outcome>output</from-outcome>  
-            <to-view-id>/success.xhtml</to-view-id>  
-        </navigation-case>  
-  
-        <navigation-case>  
-            <from-action>#{user.login}</from-action>  
-            <from-outcome>invalid</from-outcome>  
-            <to-view-id>/error.xhtml</to-view-id>  
-        </navigation-case>  
-    </navigation-rule>  
-  
-    <navigation-rule>  
-        <description>register new user</description>  
-        <from-view-id>/register.xhtml</from-view-id>  
-        <navigation-case>  
-            <from-action>#{user.add}</from-action>  
-            <from-outcome>success</from-outcome>  
-            <to-view-id>/success.xhtml</to-view-id>  
-        </navigation-case>  
-        <navigation-case>  
-            <from-action>#{user.add}</from-action>  
-            <from-outcome>unsuccess</from-outcome>  
-            <to-view-id>/unsuccess.xhtml</to-view-id>  
-        </navigation-case>  
-    </navigation-rule>  
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <managed-bean>
+  <managed-bean-name>userBean</managed-bean-name>
+  <managed-bean-class>beans.UserBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <description>login user</description>
+  <from-view-id>/home.xhtml</from-view-id>
+  <navigation-case>
+   <from-action>#{user.login}</from-action>
+   <from-outcome>output</from-outcome>
+   <to-view-id>/success.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{user.login}</from-action>
+   <from-outcome>invalid</from-outcome>
+   <to-view-id>/error.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <description>register new user</description>
+  <from-view-id>/register.xhtml</from-view-id>
+  <navigation-case>
+   <from-action>#{user.add}</from-action>
+   <from-outcome>success</from-outcome>
+   <to-view-id>/success.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{user.add}</from-action>
+   <from-outcome>unsuccess</from-outcome>
+   <to-view-id>/unsuccess.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <message-bundle>resources.application</message-bundle>
+  <locale-config>
+   <default-locale>en</default-locale>
+  </locale-config>
+ </application>
 </faces-config>
