@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#home.xhtml" PATH="/home.xhtml"
+  SHAPE="384,24,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#home.xhtml:0" NAME="item" PATH="/home.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="output:#{user.login}:#success.xhtml"
+    NAME="output" PATH="/success.xhtml" TARGET="rules:#success.xhtml"
+    TITLE="#{user.login}:output" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="invalid:#{user.login}:#error.xhtml"
+    NAME="output1" PATH="/error.xhtml" TARGET="rules:#error.xhtml"
+    TITLE="#{user.login}:invalid" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#register.xhtml" PATH="/register.xhtml"
+  SHAPE="40,248,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#register.xhtml:0" NAME="item"
+   PATH="/register.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success:#{user.add}:#success.xhtml"
+    NAME="output" PATH="/success.xhtml" TARGET="rules:#success.xhtml"
+    TITLE="#{user.add}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="unsuccess:#{user.add}:#unsuccess.xhtml"
+    NAME="output1" PATH="/unsuccess.xhtml"
+    TARGET="rules:#unsuccess.xhtml" TITLE="#{user.add}:unsuccess" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#error.xhtml" PATH="/error.xhtml"
+  SHAPE="744,168,50,25" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#success.xhtml" PATH="/success.xhtml"
+  SHAPE="168,24,50,25" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#unsuccess.xhtml" PATH="/unsuccess.xhtml"
+  SHAPE="552,320,50,25" model-entity="JSFProcessGroup"/>
+</PROCESS>

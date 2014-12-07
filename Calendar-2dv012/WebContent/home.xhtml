@@ -9,6 +9,8 @@
   <h:head>
 	<title>..</title>
 	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="scripts.js"></script>
     </h:head>
@@ -35,13 +37,17 @@
                             required="true" requiredMessage="Name field must not be empty" />  
                     
                     <h:message for="inputName" style="color:red" />
-   	
-   	<h:outputText value="Enter password :" /> 
+   	<br></br>
+   	<h:outputText value="Password :" /> 
                     <h:inputSecret id="inputPassword" value="#{user.password}"  
                             required="true"  
                             requiredMessage="Password field must not be empty" /> 
                     <h:message for="inputPassword" style="color:red" />
+     <br></br>               
 <h:commandButton value="Sign In" action="#{user.login}" />
+<br></br> 
+<h:outputLabel value="Not a member yet? " />  
+<h:outputLink value="register.xhtml">Sign Up</h:outputLink>
 </h:form> 
 
 </div>

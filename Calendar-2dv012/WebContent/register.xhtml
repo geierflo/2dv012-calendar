@@ -1,38 +1,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
-  
-<html xmlns="http://www.w3.org/1999/xhtml"  
-    xmlns:h="http://java.sun.com/jsf/html"  
-    xmlns:f="http://java.sun.com/jsf/core">  
-  
-<h:head>  
-    <title>Registration Page</title>  
-</h:head>  
-<h:body>  
-    <f:view>  
-        <h:form id="registerForm">  
-            <table>  
-                <tr>  
-                    <td><h:outputText value="Enter Your First Name:" /></td>  
-                    <td><h:inputText id="fname" value="#{user.userName}"  
-                            required="true" requiredMessage="Please enter your username" /></td>  
-                    <td><h:message for="fname" style="color:red" /></td>  
-                </tr>  
-                <tr>  
-                    <td><h:outputText value="Enter Password :" /></td>  
-                    <td><h:inputSecret id="psw" value="#{user.password}"  
-                            required="true" requiredMessage="Please enter your password" /></td>  
-                    <td><h:message for="psw" style="color:red" /></td>  
-                </tr>  
-                <tr>  
-                    <td />  
-                    <td><h:commandButton value="Register" action="#{user.add}" /></td>  
-                </tr>  
-                <tr>  
-                    <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>  
-                </tr>  
-            </table>  
-        </h:form>  
-    </f:view>  
-</h:body>  
-</html>  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>..</title>
+	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="scripts.js"></script>
+</h:head>
+
+<h:body>
+
+	<div id="wrapper">
+		<div id="header"></div>
+
+		<div id="container">
+			<div id="content">
+
+				<h1 id="Days"></h1>
+				<br />
+
+				<h:form id="registerForm">
+					<table>
+						<tr>
+							<td><h:outputText value="Enter Your First Name:" /></td>
+							<td><h:inputText id="fname" value="#{user.userName}"
+									required="true" requiredMessage="Please enter your username" /></td>
+							<td><h:message for="fname" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Enter Password :" /></td>
+							<td><h:inputSecret id="psw" value="#{user.password}"
+									required="true" requiredMessage="Please enter your password" /></td>
+							<td><h:message for="psw" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td />
+							<td><h:commandButton value="Register" action="#{user.add}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+						</tr>
+					</table>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="footer"></div>
+</h:body>
+</html>
