@@ -16,9 +16,7 @@ DROP TABLE IF EXISTS `mydb`.`calendars` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`calendars` (
   `calendar_id` INT(5) NOT NULL AUTO_INCREMENT,
-  `calendarname` VARCHAR(45) NOT NULL,
-  `link` VARCHAR(100) NULL DEFAULT NULL,
-  `color` VARCHAR(45) NULL DEFAULT NULL,
+  `calendarname` VARCHAR(45) NULL DEFAULT NULL,
   `background` BLOB NULL DEFAULT NULL,
   `begindate` DATE NULL DEFAULT NULL,
   `public` TINYINT(1) NULL DEFAULT NULL,
