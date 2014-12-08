@@ -79,10 +79,11 @@ public class UserBean implements Serializable {
 	}
 	
 	public void logout() {  
-		FacesContext.getCurrentInstance().getExternalContext()  
-		.invalidateSession();  
-		FacesContext.getCurrentInstance()  
-		.getApplication().getNavigationHandler()  
-		.handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();  
+		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
+		user=null;
+		username=null;
+		password=null;
+		role=null;
 	}  
 }
