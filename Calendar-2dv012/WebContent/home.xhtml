@@ -26,25 +26,25 @@
 
 	<h1 id="Days"></h1>
 	<br />
-	<h:graphicImage value="Resources/santa.png" rendered="#{user.getuserName()==null}" />
+	<h:graphicImage value="Resources/santa.png" rendered="#{userBean.username==null}" />
 
 </div>
 
 <div id="sidebar">
 <h:form id="loginForm">  
 <h:outputText value="Username: " />  
-                    <h:inputText id="inputName" value="#{user.userName}"  
+                    <h:inputText id="inputName" value="#{userBean.username}"  
                             required="true" requiredMessage="Name field must not be empty" />  
                     
                     <h:message for="inputName" style="color:red" />
    	<br></br>
    	<h:outputText value="Password :" /> 
-                    <h:inputSecret id="inputPassword" value="#{user.password}"  
+                    <h:inputSecret id="inputPassword" value="#{userBean.password}"  
                             required="true"  
                             requiredMessage="Password field must not be empty" /> 
                     <h:message for="inputPassword" style="color:red" />
      <br></br>               
-<h:commandButton value="Sign In" action="#{user.login}" />
+<h:commandButton value="Sign In" action="#{userBean.logIn}" />
 <br></br> 
 <h:outputLabel value="Not a member yet? " />  
 <h:outputLink value="register.xhtml">Sign Up</h:outputLink>
