@@ -28,13 +28,17 @@ public class UserEJB {
         // TODO Auto-generated constructor stub
     }
     
-    public void createUser(User user){
-		if (user.getUsername() != null) {    
+    public boolean createUser(User user){
+    	boolean created = false;
+    	User tmp = findUserByName(user.getUsername());
+    	
+		if (user.getUsername() != null || tmp.getUsername() != user.getUsername()) {    
 			try {  
 				  
 				String hashPass = hash(user.getPassword());
 				user.setPassword(hashPass); 
 				em.persist(user);
+				created = true;
 				System.out.println("Data Added Successfully");  
 				
 				
@@ -43,6 +47,7 @@ public class UserEJB {
 			  
 			}  
 		}
+		return created;
     }
 
     public List<User> getListofUsers() {
@@ -51,7 +56,7 @@ public class UserEJB {
     	return result;
     }
 
-private String hash(String pw){
+    private String hash(String pw){
 		
 	    String generatedPassword = null;
 	        try {
@@ -84,19 +89,34 @@ private String hash(String pw){
 
 	public String login(User user) {
 		String resultTag = "invalid";
+		
+    	User tmp= findUserByName(user.getUsername());
+    	
+    	if(tmp.getUsername()==user.getUsername() &&
+				tmp.getPassword()==hash(user.getPassword())){
+			resultTag= "output";
+			
+		}else
+		resultTag= "invalid";
+	
+    	return resultTag;
+	}
+	
+
+
+	public User findUserByName(String username){
+		
+		
 		TypedQuery<User> theQuery = em.createQuery("SELECT u FROM User u", User.class);
     	List<User> result = theQuery.getResultList();
     	
     	for(int i=0;i<=result.size()-1;i++){
-    		if(result.get(i).getUsername()==user.getUsername() &&
-    				result.get(i).getPassword()==hash(user.getPassword())){
-    			resultTag= "output";
+    		if(result.get(i).getUsername()==username){
     			
-    		}else
-    		resultTag= "invalid";
-		
-    	}
-    	return resultTag;
-}
-
+    			return result.get(i);
+    		}	
+    	}	
+    		return null;
+	}
+	
 }
