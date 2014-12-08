@@ -57,19 +57,26 @@ public class UserBean implements Serializable {
 		us.setUsername(username);
 		us.setPassword(password);
 		us.setRole("User");
-		user.createUser(us);
-		return "success.xhtml";
+		if(user.createUser(us))
+			return "success.xhtml";
+		
+		return "unsuccess.xhtml";
 	}
 	
+	/**
+	 *Logs the user into the system
+	 *or shows an error if wrong credentials 
+	 *are 
+	 */
 	public String logIn(){
 		User us = new User();
 		us.setUsername(username);
 		us.setPassword(password);
 		us.setRole("User");
 		if(user.login(us)=="output"){
-			return "loged-in";
+			return "success.xhtml";
 		}else{
-			return "loginfail";
+			return "unsuccess.xhtml";
 		}
 		
 	}
