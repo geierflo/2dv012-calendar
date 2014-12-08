@@ -32,20 +32,20 @@ $(function(){
                 </tr>  
                 <tr>  
                     <td><h:outputText value="Enter Your Name : " /></td>  
-                    <td><h:inputText id="inputName" value="#{user.userName}"  
+                    <td><h:inputText id="inputName" value="#{userBean.username}"  
                             required="true" requiredMessage="Name field must not be empty" />  
                     </td>  
                     <td><h:message for="inputName" style="color:red" /></td>  
                 </tr>  
                 <tr>  
                     <td><h:outputText value="Enter password :" /></td>  
-                    <td><h:inputSecret id="inputPassword" value="#{user.password}"  
+                    <td><h:inputSecret id="inputPassword" value="#{userBean.password}"  
                             required="true"  
                             requiredMessage="Password field must not be empty" /></td>  
                     <td><h:message for="inputPassword" style="color:red" /></td>  
                 </tr>  
                 <tr>  
-                    <td><h:commandButton value="Sign In" action="#{user.login}" /></td>  
+                    <td><h:commandButton value="Sign In" action="#{userBean.logIn}" /></td>  
                     <td><h:outputText value="Not a User " />   
                         <h:outputLink value="register.xhtml">Sign Up</h:outputLink>  
                     </td>  
