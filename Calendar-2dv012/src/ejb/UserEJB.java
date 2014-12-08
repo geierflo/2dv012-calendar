@@ -12,6 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.jboss.security.ISecurityManagement;
+
 import model.User;
 
 /**
@@ -92,8 +94,12 @@ public class UserEJB {
 		
     	User tmp= findUserByName(user.getUsername());
     	
-    	if(tmp.getUsername()==user.getUsername() &&
-				tmp.getPassword()==hash(user.getPassword())){
+    	if(tmp == null){
+    		return "invalid";
+    	}
+    	String hashed = hash(user.getPassword());
+    	if(tmp.getUsername().contentEquals(user.getUsername()) &&
+				tmp.getPassword().contentEquals(hashed)){
 			resultTag= "output";
 			
 		}else
@@ -111,7 +117,7 @@ public class UserEJB {
     	List<User> result = theQuery.getResultList();
     	
     	for(int i=0;i<=result.size()-1;i++){
-    		if(result.get(i).getUsername()==username){
+    		if(result.get(i).getUsername().contentEquals(username)){
     			
     			return result.get(i);
     		}	
