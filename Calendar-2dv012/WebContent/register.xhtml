@@ -30,20 +30,22 @@
 					<table>
 						<tr>
 							<td><h:outputText value="Enter Your First Name:" /></td>
-							<td><h:inputText id="fname" value="#{user.userName}"
+							<td><h:inputText id="fname" value="#{userBean.username}"
 									required="true" requiredMessage="Please enter your username" /></td>
 							<td><h:message for="fname" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Enter Password :" /></td>
-							<td><h:inputSecret id="psw" value="#{user.password}"
+							<td><h:inputSecret id="psw" value="#{userBean.password}"
 									required="true" requiredMessage="Please enter your password" /></td>
 							<td><h:message for="psw" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td />
-							<td><h:commandButton value="Register" action="#{user.add}" /></td>
+							<td><h:commandButton value="Register" action="#{userBean.addUser}" /></td>
 						</tr>
+						
+						
 						<tr>
 							<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
 						</tr>
