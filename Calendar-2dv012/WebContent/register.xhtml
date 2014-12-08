@@ -23,8 +23,10 @@
 		<div id="container">
 			<div id="content">
 
-				<h1 id="Days"></h1>
-				<br />
+				<h1 id="Days">
+					<script>showRemaining()</script>
+				</h1>
+
 
 				<h:form id="registerForm">
 					<table>
@@ -42,10 +44,11 @@
 						</tr>
 						<tr>
 							<td />
-							<td><h:commandButton value="Register" action="#{userBean.addUser}" /></td>
+							<td><h:commandButton value="Register"
+									action="#{userBean.addUser}" /></td>
 						</tr>
-						
-						
+
+
 						<tr>
 							<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
 						</tr>

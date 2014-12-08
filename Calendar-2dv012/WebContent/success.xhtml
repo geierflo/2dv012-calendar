@@ -1,39 +1,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
-  
-<html xmlns="http://www.w3.org/1999/xhtml"  
-    xmlns:ui="http://java.sun.com/jsf/facelets"  
-    xmlns:h="http://java.sun.com/jsf/html"  
-    xmlns:f="http://java.sun.com/jsf/core">  
-  
-<head>
-    <title><h:outputText value="#{msg.welcomeTitle}" /></title>
-    <link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
-<script> 
-$(function(){
-  $("#header").load("header.xhtml"); 
-  $("#footer").load("footer.xhtml"); 
-});
-</script>
-</head> 
- 
-<h:body>  
-<div id="header"></div>
-    
-<div id="content"></div>
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<img src="Data/images.ico" alt="" align="left" style="width: 325px; height: 219px"/>
- 
-    <f:view>  
-        <p>Successfully logged in</p>  
-        <p>Hi, #{userBean.username}</p>  
-        <h:form>  
-            <p>  
-                <h:commandLink value="logout" action="#{userBean.logout}" />  
-            </p>  
-        </h:form>  
-    </f:view>  
-</h:body>  
-</html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>..</title>
+	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="scripts.js"></script>
+</h:head>
+
+<h:body>
+
+	<div id="wrapper">
+		<div id="header"></div>
+
+		<div id="container">
+			<div id="content">
+
+				<h1 id="Days">
+					<script>showRemaining()</script>
+				</h1>
+
+				<img src="Data/images.ico" alt="" align="left"
+					style="width: 325px; height: 219px" />
+
+				<f:view>
+					<p>Successfully logged in</p>
+					<p>Hi, #{userBean.username}</p>
+					<h:form>
+						<p>
+							<h:commandLink value="logout" action="#{userBean.logout}" />
+						</p>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+	</div>
+
+
+</h:body>
+</html>

@@ -1,35 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
-  
-<h:html xmlns="http://www.w3.org/1999/xhtml"  
-    xmlns:ui="http://java.sun.com/jsf/facelets"  
-    xmlns:h="http://java.sun.com/jsf/html"  
-    xmlns:f="http://java.sun.com/jsf/core">  
-  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-  
-<h:head>  
-<title>JSF AND JPA TEST PAGE</title>  
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
-<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
-</h:head>  
-<h:form>
-	<h:dataTable value="#{userBean.allUsers}" var="user">
-		<h:column>
-			<f:facet name="header">Name</f:facet>
-#{user.username}
-</h:column>
-		<h:column>
-			<f:facet name="header">Description</f:facet>
-#{user.password}
-</h:column>
-	</h:dataTable>
-</h:form>
- <br></br>
- Go to home page 
- <a href="home.xhtml"> click!</a>
- 
-<h:body>  
-   
-</h:body>  
-</h:html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>..</title>
+	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="scripts.js"></script>
+</h:head>
+
+<h:body>
+
+	<div id="wrapper">
+		<div id="header"></div>
+
+		<div id="container">
+			<div id="content">
+
+				<h1 id="Days">
+					<script>showRemaining()</script>
+				</h1>
+				<br />
+				<h:form>
+					<h:dataTable value="#{userBean.allUsers}" var="user">
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							#{user.username}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Description</f:facet>
+							#{user.password}
+							</h:column>
+					</h:dataTable>
+				</h:form>
+				<br></br> Go to home page <a href="home.xhtml"> click!</a>
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+</h:body>
+
+</html>
