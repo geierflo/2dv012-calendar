@@ -1,7 +1,7 @@
 // Loads the header and footer xhtmls into #header and #footer directly
 $(function(){
   $("#header").load("header.xhtml"); 
-  $("#footer").load("footer.html"); 
+  $("#footer").load("footer.xhtml"); 
 });
 
 function showRemaining() {
