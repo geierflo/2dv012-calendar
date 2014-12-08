@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import model.User;
@@ -63,11 +64,7 @@ public class UserBean implements Serializable {
 		return "unsuccess.xhtml";
 	}
 	
-	/**
-	 *Logs the user into the system
-	 *or shows an error if wrong credentials 
-	 *are 
-	 */
+	
 	public String logIn(){
 		User us = new User();
 		us.setUsername(username);
@@ -80,4 +77,12 @@ public class UserBean implements Serializable {
 		}
 		
 	}
+	
+	public void logout() {  
+		FacesContext.getCurrentInstance().getExternalContext()  
+		.invalidateSession();  
+		FacesContext.getCurrentInstance()  
+		.getApplication().getNavigationHandler()  
+		.handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
+	}  
 }
