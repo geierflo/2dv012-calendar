@@ -34,7 +34,8 @@ DROP TABLE IF EXISTS `mydb`.`days` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`days` (
   `iddays` INT(10) NOT NULL AUTO_INCREMENT,
   `date` VARCHAR(45) NULL DEFAULT NULL,
-  `data` VARCHAR(450) NULL DEFAULT NULL,
+  `text` VARCHAR(450) NULL DEFAULT NULL,
+  `link` VARCHAR(45) NULL DEFAULT NULL,
   `calendars_calendar_id` INT(5) NOT NULL,
   PRIMARY KEY (`iddays`),
   INDEX `fk_days_calendars1_idx` (`calendars_calendar_id` ASC),
