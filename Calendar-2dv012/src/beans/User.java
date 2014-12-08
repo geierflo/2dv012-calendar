@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @ManagedBean(name = "user")  
 @SessionScoped  
 public class User {  
-
+/*
 	private String userName;  
 	private String password;
 	private String dbPassword;  
@@ -163,5 +163,5 @@ public class User {
 
 
 		return generatedPassword;
-	}
+	}*/
 }
