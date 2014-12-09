@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h:form>
+<table>
+						<tr>
+							<td><h:outputText value=" Name:" /></td>
+							<td><h:inputText  value="#{calendarBean.calendarName}"
+									required="true" requiredMessage="Please enter your username" /></td>
+							<td><h:message for="name" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Enter Background:" /></td>
+							<td><h:inputText  value="#{calendarBean.background}"
+									required="true" requiredMessage="Please enter your username" /></td>
+							<td><h:message for="back" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Date :" /></td>
+							
+							<td><h:inputText converter="javax.faces.DateTime"  value="#{calendarBean.date}"
+									required="true"> <f:convertDateTime pattern="dd-mm-yyyy" /> 
+							</h:inputText>>
+							
+							</td>
+							<td><h:message for="date" style="color:red" /></td>
+						</tr>
+						
+				
+						<tr>
+							<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+						</tr>
+						
+					</table>
+					<h:commandButton value="Create"  action="#{calendarBean.addCalendar}" />
+					</h:form>
+<br></br>
+
+<a href="ListofCalendars.xhtml">All calendars</a>
+</body> 
+</html>
