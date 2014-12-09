@@ -26,28 +26,22 @@
 				<h1 id="Days">
 					<script>showRemaining()</script>
 				</h1>
-				<br />
-				<h:form>
-					<h:dataTable value="#{userBean.allUsers}" var="user">
-						<h:column>
-							<f:facet name="header">Name</f:facet>
-							#{user.username}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Password</f:facet>
-							#{user.password}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Role</f:facet>
-							#{user.role}
-							</h:column>
-					</h:dataTable>
-				</h:form>
-				<br></br> Go to home page <a href="home.xhtml"> click!</a>
+
+				
+
+				<f:view>
+					<p>Successfully logged in as admin!</p>
+					<p>Hi, #{userBean.username}</p>
+					<h:form>
+						<p>
+							<h:commandLink value="logout" action="#{userBean.logout}" />
+						</p>
+					</h:form>
+				</f:view>
 			</div>
 		</div>
 	</div>
-	<div id="footer"></div>
-</h:body>
 
+
+</h:body>
 </html>
