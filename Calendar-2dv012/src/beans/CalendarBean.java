@@ -28,9 +28,7 @@ public class CalendarBean implements Serializable {
 	private byte public_;
 	private String background;
 	private Date date;
-	
-	
-
+	private UserBean userb = new UserBean();
 	
 	public String getCalendarName() {
 		return calendarName;
@@ -44,7 +42,7 @@ public class CalendarBean implements Serializable {
 	public void setCalendarID(int calendarID) {
 		this.calendarID = calendarID;
 	}
-	public byte isPublic_() {
+	public byte getPublic_() {
 		return public_;
 	}
 	public void setPublic_(byte public_) {
@@ -65,9 +63,10 @@ public class CalendarBean implements Serializable {
 	
 	public String addCalendar(){
 		Calendar tmp = new Calendar();
+		
+		tmp.setCalendarname(calendarName);
 		tmp.setBackground(background);
 		tmp.setBegindate(date);
-		tmp.setCalendarname(calendarName);
 		tmp.setPublic_(public_);
 		calendarEJB.createCalendar(tmp);
 		return "ListofCalendars.xhtml";
@@ -80,6 +79,11 @@ public class CalendarBean implements Serializable {
 	
 	public Calendar calendarByID(){
 		return calendarEJB.getCalendarById(calendarID);
+	}
+	
+	public List<Calendar> userCalendars(){
+		return calendarEJB.listUsersCalendars(userb.getUsername());
+		
 	}
 
 }

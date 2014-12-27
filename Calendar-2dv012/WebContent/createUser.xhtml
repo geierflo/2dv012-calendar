@@ -22,26 +22,41 @@
 		<div id="container">
 			<div id="content">
 
-				<h1>Sign up for the online advent calendar</h1>
+				<h1>Create user or admin</h1>
 
 				<h:form id="registerForm">
 					<table>
 						<tr>
-							<td><h:outputText value="Enter Your First Name:" /></td>
+							<td><h:outputText value="Enter the First Name:" /></td>
 							<td><h:inputText id="fname" value="#{userBean.username}"
 									required="true" requiredMessage="Please enter your username" /></td>
 							<td><h:message for="fname" style="color:red" /></td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Enter Password :" /></td>
+							<td><h:outputText value="Enter the Password :" /></td>
 							<td><h:inputSecret id="psw" value="#{userBean.password}"
 									required="true" requiredMessage="Please enter your password" /></td>
 							<td><h:message for="psw" style="color:red" /></td>
 						</tr>
 						<tr>
+							<td><h:outputText value="Choose the type:" /></td>
+							<td><select id="role">
+									<option value="User">User</option>
+									<option value="Admin">Admin</option>
+							</select></td>
+							<td><h:message for="role" style="color:red" /></td>
+						</tr>
+						
+							<script type="text/javascript">
+							String origin = req.getParameter("role"); 
+							#{userBean.role}=origin;
+							System.out.println("thisis my message............................  LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL   : "+ origin);
+							</script>
+						
+						<tr>
 							<td />
-							<td><h:commandButton value="Sign up"
-									action="#{userBean.addUser}" /></td>
+							<td><h:commandButton value="Create"
+									action="#{userBean.createUser}" /></td>
 						</tr>
 
 

@@ -31,7 +31,7 @@ body {
 
 #logo {
     
-    background-image: none;
+    background-image: url("logo.jpg");
     position: relative;
     height:150px;
     

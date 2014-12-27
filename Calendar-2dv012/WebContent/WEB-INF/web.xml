@@ -2,7 +2,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4">
   <display-name>jsfLoginExample</display-name>
   <welcome-file-list>
-    <welcome-file>/index.xhtml</welcome-file>
+    <welcome-file>/home.xhtml</welcome-file>
   </welcome-file-list>
   <resource-ref>
     <description>Login Database</description>

@@ -7,11 +7,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>..</title>
+	<title>Advent Calendar</title>
 	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
-	<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<link rel="shortcut icon" href="favicon.ico"></link><script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="scripts.js"></script>
 </h:head>
 
@@ -23,9 +21,11 @@
 		<div id="container">
 			<div id="content">
 
-				<h1 id="Days">
+<h1>Welcome to the online advent calendar</h1>
+<br />
+				<h2 id="Days">
 					<script>showRemaining()</script>
-				</h1>
+				</h2>
 				<br />
 				<h:graphicImage value="Resources/santa.png"
 					rendered="#{userBean.username==null}" />
@@ -45,12 +45,11 @@
 						required="true" requiredMessage="Password field must not be empty" />
 					<h:message for="inputPassword" style="color:red" />
 					<br></br>
-					<h:commandButton value="Sign In" action="#{userBean.logIn}" />
-					<br></br>
+					<h:commandButton value="Log In" action="#{userBean.logIn}" />
+					<br></br><br></br>
 					<h:outputLabel value="Not a member yet? " />
 					<h:outputLink value="register.xhtml">Sign Up</h:outputLink>
 				</h:form>
-<a href="createCalendar.xhtml"> Create calendar</a>
 			</div>
 
 		</div>

@@ -7,10 +7,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>..</title>
+	<title>Advent Calendar</title>
 	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
-	<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
+	<link rel="shortcut icon" href="favicon.ico"></link>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="scripts.js"></script>
 </h:head>
@@ -22,16 +21,77 @@
 
 		<div id="container">
 			<div id="content">
+				<h:form>
+					<h3>Calendars:</h3>
+					<h:dataTable value="#{calendarBean.allCalendars()}" var="calendar">
 
-				<h1 id="Days">
-					<script>showRemaining()</script>
-				</h1>
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+							#{calendar.calendarId}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							#{calendar.calendarname}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Public</f:facet>
+							#{calendar.public_}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date</f:facet>
+							#{calendar.begindate}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Edit</f:facet>
+							<a href="myfile.htm"><img src="resources/edit.png"></img></a>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Delete</f:facet>
+							<a href="myfile.htm"><img src="resources/delete.png"></img></a>
+						</h:column>
+					</h:dataTable>
+					<a href="createCalendar.xhtml"> Create calendar</a>
+				</h:form>
 
-				
+				<br />
+				<h3>Users:</h3>
+				<h:form>
+					<h:dataTable value="#{userBean.allUsers}" var="user">
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							#{user.username}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Password</f:facet>
+							#{user.password}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Role</f:facet>
+							#{user.role}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Edit</f:facet>
+							<a href="myfile.htm"><img src="resources/edit.png"></img></a>
+						</h:column>
 
+						<h:column>
+							<f:facet name="header">Delete</f:facet>
+							<a href="myfile.htm"><img src="resources/delete.png"></img></a>
+						</h:column>
+					</h:dataTable>
+					<a href="createUser.xhtml"> Create User</a>
+				</h:form>
+
+
+			</div>
+
+			<div id="sidebar">
 				<f:view>
+
+					<p>
+						Hi, <b> #{userBean.username}</b>
+					</p>
 					<p>Successfully logged in as admin!</p>
-					<p>Hi, #{userBean.username}</p>
 					<h:form>
 						<p>
 							<h:commandLink value="logout" action="#{userBean.logout}" />

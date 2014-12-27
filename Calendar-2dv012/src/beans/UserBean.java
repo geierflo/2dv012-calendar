@@ -64,6 +64,16 @@ public class UserBean implements Serializable {
 		return "unsuccess.xhtml";
 	}
 
+	public String createUser(){
+		User us = new User();
+		us.setUsername(username);
+		us.setPassword(password);
+		us.setRole(role);
+		if(user.createUser(us))
+			return "success.xhtml";
+
+		return "unsuccess.xhtml";
+	}
 
 	public String logIn(){
 		User us = new User();

@@ -2,17 +2,12 @@ package ejb;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.List;
-
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import org.jboss.security.ISecurityManagement;
 
 import model.User;
 
@@ -41,7 +36,7 @@ public class UserEJB {
 				user.setPassword(hashPass); 
 				em.persist(user);
 				created = true;
-				System.out.println("Data Added Successfully");  
+				System.out.println("Data Added Successfully.");  
 				
 				
 			} catch (Exception e) {
