@@ -45,10 +45,11 @@
 			<div id="sidebar">
 				<h:form>
 				 	<h2>Your calendars</h2>
-					<h:dataTable value="#{calendarBean.allCalendars()}" var="calendar">
+					<h:dataTable value="#{calendarBean.userCalendars(userBean.username)}" var="calendar">
 						<h:column>
 							<f:facet name="header">Name</f:facet>
-							#{calendar.calendarname}
+							<a href="ShowUpload.xhtml" onclick="#{calendarBean.showBackground(userbean.username, calendar.calendarname)}">#{calendar.calendarname}</a>
+							
 							</h:column>
 						<h:column>
 							<f:facet name="header">Date</f:facet>
