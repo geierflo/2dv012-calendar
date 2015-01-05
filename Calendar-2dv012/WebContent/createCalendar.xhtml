@@ -32,7 +32,7 @@
 
 				<h1>Create calendar</h1>
 
-				<h:form>
+				<h:form  enctype="multipart/form-data">
 					<table>
 						<tr>
 							<td><h:outputText value=" Name:" /></td>
@@ -52,8 +52,7 @@
 								</form></td>
 -->
 
-							<td><h:inputText value="#{calendarBean.background}"
-									required="true" requiredMessage="Please enter your username" /></td>
+							<td><h:inputFile value = "#{calendarBean.file}"></h:inputFile></td>
 									
 							<td><h:message for="back" style="color:red" /></td>
 						</tr>
@@ -74,9 +73,16 @@
 							<td><h:message for="back" style="color:red" /></td>
 						</tr>
 						<tr>
+							<td><h:outputText value="User name:" /></td>
+							<td><h:inputText value="#{calendarBean.owner}"
+									required="true"
+									requiredMessage="Please enter 0 or one if the calendar is pblic" /></td>
+							<td><h:message for="back" style="color:red" /></td>
+						</tr>
+						<tr>
 							<td />
 							<td><h:commandButton value="Create"
-									action="#{calendarBean.addCalendar}" /></td>
+									action="#{calendarBean.addCalendar}" actionListener="#{calendarBean.upload()}" /></td>
 						</tr>
 						<tr>
 							<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
