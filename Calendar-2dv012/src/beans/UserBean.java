@@ -80,7 +80,6 @@ public class UserBean implements Serializable {
 		us.setUsername(username);
 		us.setPassword(password);
 		us.setRole(user.findUserByName(username).getRole());
-		System.out.println(us.getRole());
 		if(user.login(us)=="output"){
 			if (us.getRole().equals("Admin"))		
 				return "admin.xhtml";
