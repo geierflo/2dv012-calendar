@@ -12,13 +12,15 @@ import java.util.Date;
 @Entity
 @Table(name="calendars")
 @NamedQuery(name="Calendar.findAll", query="SELECT c FROM Calendar c")
+
 public class Calendar implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="calendar_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int calendarId;
-
+	
 	private String background;
 
 	@Temporal(TemporalType.DATE)
