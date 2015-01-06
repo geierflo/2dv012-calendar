@@ -34,14 +34,15 @@ public class CalendarEJB {
 		 
 			TypedQuery<Calendar> theQuery = em.createQuery("SELECT c FROM Calendar c", Calendar.class);
 			List<Calendar> result = theQuery.getResultList();
+			Calendar cal = new Calendar();
 			
 			for(int i=0;i<=result.size()-1;i++){
 	    		if(result.get(i).getCalendarId()== id){
 	    			
-	    			return result.get(i);
+	    			cal = result.get(i);
 	    		}	
 	    	}	
-	    		return null;
+	    		return cal;
 		 }
 	 
 	public ArrayList<Calendar> listUsersCalendars(String username){
@@ -50,7 +51,7 @@ public class CalendarEJB {
 		 TypedQuery<UsersHasCalendar> theQuery = em.createQuery("SELECT u FROM UsersHasCalendar u", UsersHasCalendar.class);
 			List<UsersHasCalendar> result = theQuery.getResultList();
 			ArrayList<UsersHasCalendarPK> pk = new ArrayList <UsersHasCalendarPK>();
-	    	System.out.println(result.size()+" "+ result.get(0).getId().getUsersUsername());
+	    	
 	    	
 	    	for(int i=0;i<result.size();i++){
 				 pk.add(result.get(i).getId()); 	
