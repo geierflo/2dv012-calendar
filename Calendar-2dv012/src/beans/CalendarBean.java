@@ -166,21 +166,19 @@ public class CalendarBean implements Serializable {
 	public void showBackground(String username, String calendarname) {
 		ArrayList<Calendar> tmp = new ArrayList<Calendar>();
 		Calendar cal = new Calendar();
-
+		tmp = calendarEJB.listUsersCalendars(username);
+		
 		if (!tmp.isEmpty()) {
-			tmp = calendarEJB.listUsersCalendars(username);
-			
+				
 			for(int i=0;i<tmp.size();i++){
 				
-				if(tmp.get(i).getCalendarname().contentEquals(calendarname)){
-				cal = tmp.get(i);
-				System.out.println(calendarname+ "AAAAAAAAAAAAAAAAAAAAAAAAAaa");
-				}
+				if(tmp.get(i).getCalendarname().equalsIgnoreCase(calendarname));
+					cal = tmp.get(i);
 			}
-			
-			
+		}	
+			System.out.println(cal.getBackground() + " " + calendarname + "as " + username);
 			setBackground(cal.getBackground());
-		}
+		
 
 	}
 
