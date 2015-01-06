@@ -16,6 +16,12 @@
 
 <h:body>
 
+
+	<script>
+function myFunction() {
+    var x = document.getElementById("calName").text;
+}
+</script>
 	<div id="wrapper">
 		<div id="header"></div>
 
@@ -34,7 +40,9 @@
 
 			<div id="sidebar">
 				<f:view>
-					<p>Hi, <b>#{userBean.username}</b></p>
+					<p>
+						Hi, <b>#{userBean.username}</b>
+					</p>
 					<h:form>
 						<p>
 							<h:commandLink value="logout" action="#{userBean.logout}" />
@@ -44,13 +52,17 @@
 			</div>
 			<div id="sidebar">
 				<h:form>
-				 	<h2>Your calendars</h2>
-					<h:dataTable value="#{calendarBean.userCalendars(userBean.username)}" var="calendar">
+					<h2>Your calendars</h2>
+					<h:dataTable
+						value="#{calendarBean.userCalendars(userBean.username)}"
+						var="calendar">
 						<h:column>
 							<f:facet name="header">Name</f:facet>
-							<a href="ShowUpload.xhtml" onclick="#{calendarBean.showBackground(userbean.username, calendar.calendarname)}">#{calendar.calendarname}</a>
-							
-							</h:column>
+
+							<a href="ShowUpload.xhtml" id="calName"
+								onclick="#{calendarBean.showBackground(userBean.username, calendar.calendarname)}">#{calendar.calendarname}</a>
+
+						</h:column>
 						<h:column>
 							<f:facet name="header">Date</f:facet>
 							#{calendar.begindate}
