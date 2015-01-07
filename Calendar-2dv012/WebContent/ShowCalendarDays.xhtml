@@ -21,44 +21,10 @@
 
 		<div id="container">
 			<div id="content">
-			
-				<h:form>
-					<h3>Calendars:</h3>
-					<h:dataTable value="#{calendarBean.allCalendars()}" var="calendar">
 
-						<h:column>
-							<f:facet name="header">ID</f:facet>
-							#{calendar.calendarId}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Name</f:facet>
-							<a href="ShowCalendarDays.xhtml" id="showCalDays">#{calendar.calendarname}</a>
-								<!--onclick="#{calendarBean.showBackground(userBean.username, calendar.calendarname)}"--> 
-							<!--  #{calendar.calendarname}-->
-							</h:column>
-						<h:column>
-							<f:facet name="header">Public</f:facet>
-							#{calendar.public_}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Date</f:facet>
-							#{calendar.begindate}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Edit</f:facet>
-							<a href="myfile.htm"><img src="resources/edit.png"></img></a>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Delete</f:facet>
-							<a href="myfile.htm"><img src="resources/delete.png"></img></a>
-						</h:column>
-					</h:dataTable>
-					<a href="createCalendar.xhtml"> Create calendar</a>
-				</h:form>
-				
 				<h:form>
-					<h3>Days:</h3>
-					<h:dataTable value="#{dayBean.allDays()}" var="day">
+					<h3>Days of calendar:</h3>
+					<h:dataTable value="#{dayBean.calendarDays()}" var="day">
 
 						<h:column>
 							<f:facet name="header">ID</f:facet>
@@ -76,7 +42,7 @@
 							<f:facet name="header">Link</f:facet>
 							#{day.link}
 							</h:column>
-					  	<h:column>
+						<h:column>
 							<f:facet name="header">Calendar ID</f:facet>
 							#{day.calendars_calendar_id}
 							</h:column>

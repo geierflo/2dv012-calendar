@@ -29,6 +29,7 @@ public class DayBean implements Serializable {
 	private String link;
 	private int calendars_calendar_id;
 	private CalendarBean calendarb;
+	private int tempid;
 	
 	public int getIddays() {
 		return iddays;
@@ -93,9 +94,17 @@ public class DayBean implements Serializable {
 		return dayEJB.getDayById(iddays);
 	}
 	
-	public List<Day> calendarday(){
-		return dayEJB.listCalendarDays(calendars_calendar_id);
-		
+	
+	public String showCalendarDays(int calendarId){
+		System.out.println(calendarId);
+		this.tempid=calendarId;
+		return "ShowCalendarDays.xhtml"; 
 	}
+	
+	public List<Day> calendarDays(){
+		System.out.println("list for "+tempid);
+		return dayEJB.listCalendarDays(tempid);
+	}
+	
 
 }

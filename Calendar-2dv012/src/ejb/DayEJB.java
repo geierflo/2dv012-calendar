@@ -45,13 +45,12 @@ public class DayEJB {
 	 public ArrayList<Day> listCalendarDays(int calenderId){
 	
 		ArrayList<Day> tmp = new ArrayList<Day>();
-		 TypedQuery<Day> theQuery = em.createQuery("SELECT d FROM days d", Day.class);
+		 TypedQuery<Day> theQuery = em.createQuery("SELECT d FROM Day d", Day.class);
 			List<Day> result = theQuery.getResultList();
 	    	
 			for(int i=0;i<=result.size()-1;i++){
 	    		if(result.get(i).getCalendars_calendar_id()==(calenderId)){
-	    		
-	    			tmp.add(getDayById(result.get(i).getIddays()));
+	    			tmp.add(result.get(i));
 	    		}	
 	    	}	
 	    		return tmp;
