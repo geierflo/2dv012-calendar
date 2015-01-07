@@ -89,13 +89,13 @@ public class DayBean implements Serializable {
 		
 	}
 	
-	public Day calendarByID(){
+	public Day dayByID(){
 		return dayEJB.getDayById(iddays);
 	}
 	
-//	public List<Day> calendarday(){
-//		return dayEJB.listCalendarDays(calendarb.getCalendar);
-//		
-//	}
+	public List<Day> calendarday(){
+		return dayEJB.listCalendarDays(calendars_calendar_id);
+		
+	}
 
 }

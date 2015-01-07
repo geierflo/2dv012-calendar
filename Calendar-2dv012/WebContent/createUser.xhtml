@@ -40,23 +40,17 @@
 						</tr>
 						<tr>
 							<td><h:outputText value="Choose the type:" /></td>
-							<td><select id="role">
-									<option value="User">User</option>
-									<option value="Admin">Admin</option>
-							</select></td>
+							<td><h:selectOneListbox id="role" value="#{userBean.role}">
+									<f:selectItem id="item2" itemLabel="Admin" itemValue="Admin" />
+									<f:selectItem id="item1" itemLabel="User" itemValue="User" />
+
+								</h:selectOneListbox></td>
 							<td><h:message for="role" style="color:red" /></td>
 						</tr>
-						
-							<script type="text/javascript">
-							String origin = req.getParameter("role"); 
-							#{userBean.role}=origin;
-							System.out.println("thisis my message............................  LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL   : "+ origin);
-							</script>
-						
 						<tr>
 							<td />
 							<td><h:commandButton value="Create"
-									action="#{userBean.createUser}" /></td>
+									action="#{userBean.createUser}" id="submit" /></td>
 						</tr>
 
 

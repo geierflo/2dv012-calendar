@@ -79,14 +79,6 @@ public class Day implements Serializable {
 		this.text = text;
 	}
 
-//	public int getFk_days_calendars1() {
-//		return fk_days_calendars1;
-//	}
-//
-//	public void setFk_days_calendars1(int fk_days_calendars1) {
-//		this.fk_days_calendars1 = fk_days_calendars1;
-//	}
-
 	public Calendar getCalendar() {
 		return this.calendar;
 	}

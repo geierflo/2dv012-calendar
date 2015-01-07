@@ -42,20 +42,20 @@ public class DayEJB {
 	    		return null;
 		 }
 	 
-//	 public ArrayList<Day> listCalendarDays(String calendarname){
-//	
-//		ArrayList<Day> tmp = new ArrayList<Day>();
-//		 TypedQuery<UsersHasCalendarPK> theQuery = em.createQuery("SELECT u FROM UsersHasCalendar u", UsersHasCalendarPK.class);
-//			List<UsersHasCalendarPK> result = theQuery.getResultList();
-//	    	
-//			for(int i=0;i<=result.size()-1;i++){
-//	    		if(result.get(i).getUsersUsername().contentEquals(calendarname)){
-//	    		
-//	    			tmp.add(getCalendarById(result.get(i).getCalendarsCalendarId()));
-//	    		}	
-//	    	}	
-//	    		return tmp;
-//		}
+	 public ArrayList<Day> listCalendarDays(int calenderId){
+	
+		ArrayList<Day> tmp = new ArrayList<Day>();
+		 TypedQuery<Day> theQuery = em.createQuery("SELECT d FROM days d", Day.class);
+			List<Day> result = theQuery.getResultList();
+	    	
+			for(int i=0;i<=result.size()-1;i++){
+	    		if(result.get(i).getCalendars_calendar_id()==(calenderId)){
+	    		
+	    			tmp.add(getDayById(result.get(i).getIddays()));
+	    		}	
+	    	}	
+	    		return tmp;
+		}
 	 
 	 public void createDay(Day d){
 		 

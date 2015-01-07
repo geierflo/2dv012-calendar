@@ -36,7 +36,7 @@ public class UserEJB {
 				user.setPassword(hashPass); 
 				em.persist(user);
 				created = true;
-				System.out.println("Data Added Successfully.");  
+				System.out.println("Data Added Successfully."+ user.getRole());  
 				
 				
 			} catch (Exception e) {

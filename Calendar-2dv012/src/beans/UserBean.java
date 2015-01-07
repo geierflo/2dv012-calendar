@@ -11,6 +11,10 @@ import javax.inject.Named;
 import model.User;
 import ejb.UserEJB;
 
+/**
+ * @author Flo
+ *
+ */
 @Named
 @SessionScoped
 public class UserBean implements Serializable {
@@ -52,7 +56,10 @@ public class UserBean implements Serializable {
 		return user.getListofUsers();
 
 	}
-
+	/**
+	 * method used for the user self registration
+	 * @return
+	 */
 	public String addUser(){
 		User us = new User();
 		us.setUsername(username);
@@ -64,6 +71,10 @@ public class UserBean implements Serializable {
 		return "unsuccess.xhtml";
 	}
 
+	/**
+	 * method used for the admin user creation
+	 * @return
+	 */
 	public String createUser(){
 		User us = new User();
 		us.setUsername(username);

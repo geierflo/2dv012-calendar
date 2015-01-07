@@ -122,7 +122,7 @@ public class CalendarBean implements Serializable {
 
 	}
 
-	public Calendar calendarByID() {
+	public Calendar calendarByID(int calendarID) {
 		return calendarEJB.getCalendarById(calendarID);
 	}
 

@@ -92,52 +92,8 @@
 					<a href="createDay.xhtml"> Create Day</a>
 				</h:form>
 
-				<br />
-				<h3>Users:</h3>
-				<h:form>
-					<h:dataTable value="#{userBean.allUsers}" var="user">
-						<h:column>
-							<f:facet name="header">Name</f:facet>
-							#{user.username}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Password</f:facet>
-							#{user.password}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Role</f:facet>
-							#{user.role}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Edit</f:facet>
-							<a href="myfile.htm"><img src="resources/edit.png"></img></a>
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">Delete</f:facet>
-							<a href="myfile.htm"><img src="resources/delete.png"></img></a>
-						</h:column>
-					</h:dataTable>
-					<a href="createUser.xhtml"> Create User</a>
-				</h:form>
-
-
 			</div>
 
-			<div id="sidebar">
-				<f:view>
-
-					<p>
-						Hi, <b> #{userBean.username}</b>
-					</p>
-					<p>Successfully logged in as admin!</p>
-					<h:form>
-						<p>
-							<h:commandLink value="logout" action="#{userBean.logout}" />
-						</p>
-					</h:form>
-				</f:view>
-			</div>
 		</div>
 	</div>
 
