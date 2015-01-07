@@ -114,7 +114,7 @@ public class CalendarBean implements Serializable {
 			System.out.println(tmp2.getCalendarsCalendarId() + " " + owner);
 			calendarEJB.addUserHasCalendar(tmp3);
 		}
-
+		calendarEJB.createCalendar(tmp);
 		return "home.xhtml";
 	}
 
@@ -163,23 +163,16 @@ public class CalendarBean implements Serializable {
 	}
 
 	//Method used for setting the background of the calendar
-	public void showBackground(String username, String calendarname) {
-		ArrayList<Calendar> tmp = new ArrayList<Calendar>();
-		Calendar cal = new Calendar();
-		tmp = calendarEJB.listUsersCalendars(username);
+	public String showBackground(int calID) {
 		
-		if (!tmp.isEmpty()) {
-				
-			for(int i=0;i<tmp.size();i++){
-				
-				if(tmp.get(i).getCalendarname().equalsIgnoreCase(calendarname));
-					cal = tmp.get(i);
-			}
-		}	
-			System.out.println(cal.getBackground() + " " + calendarname + "as " + username);
+		Calendar cal = new Calendar();
+		setBackground(null);
+		cal = calendarEJB.getCalendarById(calID);
+		
+			System.out.println(cal.getBackground() + " " + calID + "as ");
 			setBackground(cal.getBackground());
 		
-
+			return "calendar.xhtml";
 	}
 
 }
