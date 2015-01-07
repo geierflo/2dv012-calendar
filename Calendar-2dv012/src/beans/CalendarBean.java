@@ -96,7 +96,7 @@ public class CalendarBean implements Serializable {
 
 	// Method for creating new calendar
 	public String addCalendar() {
-
+		
 		Calendar tmp = new Calendar();
 		UsersHasCalendarPK tmp2 = new UsersHasCalendarPK();
 		UsersHasCalendar tmp3 = new UsersHasCalendar();
@@ -104,17 +104,16 @@ public class CalendarBean implements Serializable {
 		tmp.setBackground(background);
 		tmp.setBegindate(date);
 		tmp.setPublic_(public_);
-
+		
+		int tmpID = calendarEJB.createCalendar(tmp).getCalendarId();
 		// If it is not public-assign it to user
 		if (public_ == 0) {
-			tmp2.setCalendarsCalendarId(calendarEJB.createCalendar(tmp)
-					.getCalendarId());
+			tmp2.setCalendarsCalendarId(tmpID);
 			tmp2.setUsersUsername(owner);
 			tmp3.setId(tmp2);
-			System.out.println(tmp2.getCalendarsCalendarId() + " " + owner);
 			calendarEJB.addUserHasCalendar(tmp3);
 		}
-		calendarEJB.createCalendar(tmp);
+		
 		return "home.xhtml";
 	}
 
@@ -166,7 +165,7 @@ public class CalendarBean implements Serializable {
 	public String showBackground(int calID) {
 		
 		Calendar cal = new Calendar();
-		setBackground(null);
+		background =null;
 		cal = calendarEJB.getCalendarById(calID);
 		
 			System.out.println(cal.getBackground() + " " + calID + "as ");
@@ -175,4 +174,18 @@ public class CalendarBean implements Serializable {
 			return "calendar.xhtml";
 	}
 
+	public String getPublicCal(){
+		List<Calendar> allCal = calendarEJB.listAllCalendars();
+		
+		
+		for(int i = 0; i<allCal.size();i++){
+			
+			if(allCal.get(i).getCalendarId()==1){
+				return showBackground(allCal.get(i).getCalendarId());
+				
+			}
+			
+		}
+		return "home.xhtml";
+	}
 }
