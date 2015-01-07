@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 
@@ -17,16 +19,30 @@ public class Day implements Serializable {
 	@Id
 	private int iddays;
 
-	private String date;
+	@Temporal(TemporalType.DATE)
+	private Date date;
 
 	private String link;
 
 	private String text;
+	
+	private int calendars_calendar_id;
+	
+//	private int fk_days_calendars1;
 
 	//bi-directional many-to-one association to Calendar
-	@ManyToOne
-	@JoinColumn(name="calendars_calendar_id")
+	@ManyToOne(fetch=FetchType.LAZY)
+//	@MapsId("calendar_id")
+	@JoinColumn(name="calendars_calendar_id", insertable = false, updatable = false)
 	private Calendar calendar;
+
+	public int getCalendars_calendar_id() {
+		return calendars_calendar_id;
+	}
+
+	public void setCalendars_calendar_id(int calendars_calendar_id) {
+		this.calendars_calendar_id = calendars_calendar_id;
+	}
 
 	public Day() {
 	}
@@ -39,12 +55,12 @@ public class Day implements Serializable {
 		this.iddays = iddays;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(Date date2) {
+		this.date = date2;
 	}
 
 	public String getLink() {
@@ -62,6 +78,14 @@ public class Day implements Serializable {
 	public void setText(String text) {
 		this.text = text;
 	}
+
+//	public int getFk_days_calendars1() {
+//		return fk_days_calendars1;
+//	}
+//
+//	public void setFk_days_calendars1(int fk_days_calendars1) {
+//		this.fk_days_calendars1 = fk_days_calendars1;
+//	}
 
 	public Calendar getCalendar() {
 		return this.calendar;

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Advent Calendar</title>
+	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="shortcut icon" href="favicon.ico"></link>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="scripts.js"></script>
+
+</h:head>
+
+<h:body>
+
+	<div id="wrapper">
+		<div id="header"></div>
+
+		<div id="container">
+			<div id="content">
+
+				<h1>Create day</h1>
+
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText value=" Text:" /></td>
+							<td><h:inputText value="#{dayBean.text}" id="text" required="true"
+									requiredMessage="Please enter the text" /></td>
+							<td><h:message for="text" style="color:red" /></td>
+						</tr>
+
+						<tr>
+							<td><h:outputText value="Date (dd-mm-yyyy):" /></td>
+							<td><h:inputText converter="javax.faces.DateTime"
+									value="#{dayBean.date}" id="date" required="true" requiredMessage="Please enter valid date">
+									<f:convertDateTime pattern="dd-mm-yyyy" />
+								</h:inputText></td>
+							<td><h:message for="date" style="color:red" /></td>
+														
+						</tr>
+						<tr>
+							<td><h:outputText value="Link:" /></td>
+							<td><h:inputText value="#{dayBean.link}" id="link" required="true"
+									requiredMessage="Please enter a link" /></td>
+							<td><h:message for="link" style="color:red" /></td>
+						</tr>
+
+						<tr>
+							<td><h:outputText value="Calendar ID:" /></td>
+							<td><h:inputText value="#{dayBean.calendars_calendar_id}" id="calId" required="true"
+									requiredMessage="Please chose a calendar id below and insert here." /></td>
+							<td><h:message for="calId" style="color:red" /></td>
+						</tr>
+
+						<tr>
+							<td />
+							<td><h:commandButton value="Create"
+									action="#{dayBean.addDay}" /></td>
+						</tr>
+					</table>
+				</h:form>
+			</div>
+
+			<div id="content">
+				<h:form>
+					<h3>Calendars:</h3>
+					<h:dataTable value="#{calendarBean.allCalendars()}" var="calendar">
+
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+							#{calendar.calendarId}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							#{calendar.calendarname}
+							</h:column>
+						<h:column>
+							<f:facet name="header">Public</f:facet>
+							#{calendar.public_}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date</f:facet>
+							#{calendar.begindate}
+							</h:column>
+					</h:dataTable>
+				</h:form>
+				<br></br>
+
+				<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+</h:body>
+</html>

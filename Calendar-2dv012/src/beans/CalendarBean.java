@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
@@ -139,9 +139,10 @@ public class CalendarBean implements Serializable {
 
 		String path = FacesContext.getCurrentInstance().getExternalContext()
 				.getRealPath("Data");
-
+			
 		try {
-			InputStream in = file.getInputStream();
+			if(file!=null){
+			InputStream in= file.getInputStream();
 			byte[] data = new byte[in.available()];
 			in.read(data);
 			FileOutputStream out = new FileOutputStream(new File(path
@@ -150,11 +151,15 @@ public class CalendarBean implements Serializable {
 			setBackground("Datapicture" + data.hashCode()
 					+ calendarName.hashCode() + ".jpeg");
 			System.out.println(background);
-
-			out.write(data);
-
 			in.close();
+			out.write(data);
 			out.close();
+			}
+			else
+			{
+				 System.out.println("No background picture chosen!");
+			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

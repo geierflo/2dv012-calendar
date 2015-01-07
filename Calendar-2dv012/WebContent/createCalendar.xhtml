@@ -12,14 +12,7 @@
 	<link rel="shortcut icon" href="favicon.ico"></link>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="scripts.js"></script>
-	<script>
-	function myFunction() {
-	 var x = document.createElement("INPUT");
-		x.setAttribute("type", "file");
-		document.body.appendChild(x);
-		#{calendarBean.background}=x;
-		}
-	</script>
+
 </h:head>
 
 <h:body>
@@ -32,57 +25,48 @@
 
 				<h1>Create calendar</h1>
 
-				<h:form  enctype="multipart/form-data">
+				<h:form enctype="multipart/form-data">
 					<table>
 						<tr>
 							<td><h:outputText value=" Name:" /></td>
 							<td><h:inputText value="#{calendarBean.calendarName}"
-									required="true"
+									id="name" required="true"
 									requiredMessage="Please enter the calendar name" /></td>
 							<td><h:message for="name" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Enter Background:" /></td>
-							<!--<td><button onclick="myFunction()">Try it</button></td>
-
-							<td><form method="post" action="file-upload-1.htm"
-									name="submit" enctype="multipart/form-data">
-									<input type="file" name="fileField"></input>
-									<input type="submit" name="submit" value="Submit"></input>
-								</form></td>
--->
-
-							<td><h:inputFile value = "#{calendarBean.file}"></h:inputFile></td>
-									
-							<td><h:message for="back" style="color:red" /></td>
+							<td><h:inputFile value="#{calendarBean.file}" id="file"></h:inputFile></td>
+							<td><h:message for="file" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Date (dd-mm-yyyy):" /></td>
 
 							<td><h:inputText converter="javax.faces.DateTime"
-									value="#{calendarBean.date}" required="true">
+									value="#{calendarBean.date}" id="date" required="true" requredMessage="Please enter a valid date">
 									<f:convertDateTime pattern="dd-mm-yyyy" />
 								</h:inputText></td>
 							<td><h:message for="date" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Public (0-1):" /></td>
-							<td><h:inputText value="#{calendarBean.public_}"
+							<td><h:inputText value="#{calendarBean.public_}" id="public"
 									required="true"
 									requiredMessage="Please enter 0 or one if the calendar is pblic" /></td>
-							<td><h:message for="back" style="color:red" /></td>
+							<td><h:message for="public" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="User name:" /></td>
-							<td><h:inputText value="#{calendarBean.owner}"
+							<td><h:inputText value="#{calendarBean.owner}" id="uname"
 									required="false"
-									requiredMessage="Please enter 0 or one if the calendar is pblic" /></td>
-							<td><h:message for="back" style="color:red" /></td>
+									requiredMessage="Please enter a username" /></td>
+							<td><h:message for="uname" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td />
 							<td><h:commandButton value="Create"
-									action="#{calendarBean.addCalendar}" actionListener="#{calendarBean.upload()}" /></td>
+									action="#{calendarBean.addCalendar}" id="submit"
+									actionListener="#{calendarBean.upload()}" /></td>
 						</tr>
 						<tr>
 							<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
