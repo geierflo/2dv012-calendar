@@ -18,9 +18,12 @@
 
 
 	<script>
-function myFunction() {
-    var x = document.getElementById("calName").text;
-}
+	$(function(){
+		  $('.info_link').click(function(){
+		    alert($(this).text());
+		    
+		  });
+		});
 </script>
 	<div id="wrapper">
 		<div id="header"></div>
@@ -58,10 +61,8 @@ function myFunction() {
 						var="calendar">
 						<h:column>
 							<f:facet name="header">Name</f:facet>
-
-							<a href="ShowUpload.xhtml" id="calName"
-								onclick="#{calendarBean.showBackground(userBean.username, calendar.calendarname)}">#{calendar.calendarname}</a>
-
+							
+							<h:commandLink action="#{calendarBean.showBackground(calendar.calendarId)}" value="#{calendar.calendarname}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">Date</f:facet>
