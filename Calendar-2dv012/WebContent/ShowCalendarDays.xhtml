@@ -48,12 +48,16 @@
 							</h:column>
 						<h:column>
 							<f:facet name="header">Edit</f:facet>
-							<a href="myfile.htm"><img src="resources/edit.png"></img></a>
+							<h:commandButton action="#{dayBean.editDay(day.iddays)}"
+								value="#{day.iddays}" image="resources/edit.png" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">Delete</f:facet>
-							<a href="myfile.htm"><img src="resources/delete.png"></img></a>
+							<h:commandButton
+								action="#{dayBean.delete(day.iddays)}"
+								value="#{day.iddays}" image="resources/delete.png" />
 						</h:column>
+
 					</h:dataTable>
 					<a href="createDay.xhtml"> Create Day</a>
 				</h:form>

@@ -81,7 +81,7 @@ public class UserBean implements Serializable {
 		us.setPassword(password);
 		us.setRole(role);
 		if(user.createUser(us))
-			return "success.xhtml";
+			return "admin.xhtml";
 
 		return "unsuccess.xhtml";
 	}
@@ -110,4 +110,48 @@ public class UserBean implements Serializable {
 		password=null;
 		role=null;
 	}  
+	
+	/**
+	 * method to delete a user, its users and days
+	 * @param calId
+	 * @return
+	 */
+	public String deleteUser(String username){
+		System.out.println("deleting user "+ username);
+		user.removeUserHasCalendar(username);
+		user.deleteUser(username);
+		return "admin.xhtml";
+	}
+	
+	public String editUser(String username){
+		System.out.println("editing user "+ username);
+		User temp= user.findUserByName(username);
+		this.username=temp.getUsername();
+		this.password=temp.getPassword();
+		this.role=temp.getRole();
+		return "editUser.xhtml";
+	}
+	
+	public String updateUser(){
+		System.out.println("updating user "+ username);
+		
+		User tmp= user.findUserByName(username);
+		tmp.setUsername(username);
+		tmp.setPassword(user.hash(password));
+		tmp.setRole(role);
+
+		user.updateUser(tmp);
+		return "home.xhtml";
+	}
+	public String password(){
+		System.out.println("updating password for "+ username);
+		User temp= user.findUserByName(username);
+		this.username=temp.getUsername();
+		this.password=temp.getPassword();
+		this.role=temp.getRole();
+
+		return "password.xhtml";
+	}
+	
+	
 }

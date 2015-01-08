@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Advent Calendar</title>
+	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="shortcut icon" href="favicon.ico"></link>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="scripts.js"></script>
+
+</h:head>
+
+<h:body>
+
+	<div id="wrapper">
+		<div id="header"></div>
+
+		<div id="container">
+			<div id="content">
+
+				<h1>Edit calendar</h1>
+
+				<h:form enctype="multipart/form-data">
+					<table>
+						<tr>
+							<td><h:outputText value=" Name:" /></td>
+							<td><h:inputText value="#{calendarBean.calendarName}"
+									id="name" required="true"
+									requiredMessage="Please enter the calendar name" /></td>
+							<td><h:message for="name" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Enter Background:" /></td>
+							<td><h:inputFile value="#{calendarBean.file}" id="file"></h:inputFile></td>
+							<td><h:message for="file" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Date (dd-mm-yyyy):" /></td>
+
+							<td><h:inputText converter="javax.faces.DateTime"
+									value="#{calendarBean.date}" id="date" required="true" requredMessage="Please enter a valid date">
+									<f:convertDateTime pattern="dd-mm-yyyy" />
+								</h:inputText></td>
+							<td><h:message for="date" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Public (0-1):" /></td>
+							<td><h:inputText value="#{calendarBean.public_}" id="public"
+									required="true"
+									requiredMessage="Please enter 0 or one if the calendar is pblic" /></td>
+							<td><h:message for="public" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="User name:" /></td>
+							<td><h:inputText value="#{calendarBean.owner}" id="uname"
+									required="false"
+									requiredMessage="Please enter a username" /></td>
+							<td><h:message for="uname" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td />
+							<td><h:commandButton value="Edit"
+									action="#{calendarBean.updateCalendar()}" id="submit"
+									actionListener="#{calendarBean.upload()}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+						</tr>
+					</table>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="footer"></div>
+</h:body>
+</html>

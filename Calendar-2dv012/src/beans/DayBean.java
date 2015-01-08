@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import model.Day;
@@ -28,7 +30,6 @@ public class DayBean implements Serializable {
 	private String text;
 	private String link;
 	private int calendars_calendar_id;
-	private CalendarBean calendarb;
 	private int tempid;
 	
 	public int getIddays() {
@@ -81,8 +82,17 @@ public class DayBean implements Serializable {
 		tmp.setText(text);
 		tmp.setLink(link);
 		tmp.setCalendars_calendar_id(calendars_calendar_id);
-		dayEJB.createDay(tmp);
-		return "ListofDays.xhtml";
+		List<model.Calendar> temp =dayEJB.listAllCalendars();
+		for (int i = 0; i < temp.size(); i++) {
+			if(temp.get(i).getCalendarId()==calendars_calendar_id){
+				dayEJB.createDay(tmp);
+				showCalendarDays(calendars_calendar_id);
+				return "ShowCalendarDays.xhtml";
+			}
+		}
+		System.out.println("No caledar with this ID "+calendars_calendar_id+" in database");
+		FacesContext.getCurrentInstance().addMessage("myForm:calId", new FacesMessage("No caledar with this ID in database", "No caledar with this ID in database"));
+		return"";
 	}
 	
 	public List<Day> allDays(){
@@ -90,21 +100,72 @@ public class DayBean implements Serializable {
 		
 	}
 	
-	public Day dayByID(){
+	public Day dayByID(int iddays){
 		return dayEJB.getDayById(iddays);
 	}
 	
-	
+	/**
+	 * method to save in bean to display all days
+	 * @param calendarId
+	 * @return
+	 */
 	public String showCalendarDays(int calendarId){
-		System.out.println(calendarId);
+		System.out.println("and why the fuck are you not working??");
 		this.tempid=calendarId;
 		return "ShowCalendarDays.xhtml"; 
 	}
 	
+	
 	public List<Day> calendarDays(){
-		System.out.println("list for "+tempid);
 		return dayEJB.listCalendarDays(tempid);
 	}
 	
-
+	public List<Day> calendarDays(int id){
+		if(dayEJB.listCalendarDays(id)==null){
+			return null;}
+		return dayEJB.listCalendarDays(id);
+	}
+	
+	public String delete(int dayId){
+		dayEJB.deleteDay(dayId);
+		return "admin.xhtml";
+	}
+	
+	/**
+	 * method called by edit xhtml
+	 * persists the bean
+	 * @param dayId
+	 * @return
+	 */
+	public String updateDay(){
+		Day tmp = new Day();
+		tmp=dayByID(tempid);
+		
+		tmp.setIddays(iddays);
+		tmp.setDate(date);
+		tmp.setText(text);
+		tmp.setLink(link);
+		tmp.setCalendars_calendar_id(calendars_calendar_id);
+		dayEJB.updateDay(tmp);
+		return "admin.xhtml";
+	}
+	
+	/**
+	 * method called from the show calenadar xhtml redirects to editxhtml
+	 * sets the bean
+	 * @param dayId
+	 * @return
+	 */
+	public String editDay(int dayId){
+		tempid=dayId;
+		Day tmp=new Day();
+		tmp=dayByID(dayId);
+		this.iddays=dayId;
+		this.date=tmp.getDate();
+		this.text=tmp.getText();
+		this.link=tmp.getLink();
+		this.calendars_calendar_id=tmp.getCalendars_calendar_id();
+		
+		return "editDay.xhtml";
+	}
 }

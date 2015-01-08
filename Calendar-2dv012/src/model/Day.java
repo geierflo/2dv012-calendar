@@ -28,11 +28,9 @@ public class Day implements Serializable {
 	
 	private int calendars_calendar_id;
 	
-//	private int fk_days_calendars1;
 
 	//bi-directional many-to-one association to Calendar
 	@ManyToOne(fetch=FetchType.LAZY)
-//	@MapsId("calendar_id")
 	@JoinColumn(name="calendars_calendar_id", insertable = false, updatable = false)
 	private Calendar calendar;
 

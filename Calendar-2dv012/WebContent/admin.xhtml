@@ -44,11 +44,11 @@
 							</h:column>
 						<h:column>
 							<f:facet name="header">Edit</f:facet>
-							<a href="myfile.htm"><img src="resources/edit.png"></img></a>
+						<h:commandButton action="#{calendarBean.editCalendar(calendar.calendarId)}" value="#{calendar.calendarId}" image="resources/edit.png" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">Delete</f:facet>
-							<a href="myfile.htm"><img src="resources/delete.png"></img></a>
+							<h:commandButton action="#{calendarBean.delete(calendar.calendarId)}" value="#{calendar.calendarname}" image="resources/delete.png"/>
 						</h:column>
 					</h:dataTable>
 					<a href="createCalendar.xhtml"> Create calendar</a>
@@ -73,12 +73,11 @@
 							</h:column>
 						<h:column>
 							<f:facet name="header">Edit</f:facet>
-							<a href="myfile.htm"><img src="resources/edit.png"></img></a>
+						<h:commandButton action="#{userBean.editUser(user.username)}" value="#{user.username}" image="resources/edit.png" />
 						</h:column>
-
 						<h:column>
 							<f:facet name="header">Delete</f:facet>
-							<a href="myfile.htm"><img src="resources/delete.png"></img></a>
+							<h:commandButton action="#{userBean.deleteUser(user.username)}" value="#{user.username}" image="resources/delete.png"/>
 						</h:column>
 					</h:dataTable>
 					<a href="createUser.xhtml"> Create User</a>

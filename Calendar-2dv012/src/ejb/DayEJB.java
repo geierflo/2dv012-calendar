@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import model.Calendar;
 import model.Day;
 
 /**
@@ -57,10 +58,30 @@ public class DayEJB {
 		}
 	 
 	 public void createDay(Day d){
-		 
 		 em.persist(d);
-		 System.out.println("Data Added Successfully"); 
-		 
+		 System.out.println("Day added Successfully"); 
 	 }
+	 
+	 public void deleteDay(int dayId){
+		 em.remove(getDayById(dayId));
+		 System.out.println("Day removed: " + dayId);
+	 }
+	 
+	 public void updateDay(Day day){
+		 Day tmp=em.find(Day.class, day.getIddays());
+		 tmp.setCalendars_calendar_id(day.getCalendars_calendar_id());
+		 tmp.setDate(day.getDate());
+		 tmp.setLink(day.getLink());
+		 tmp.setText(day.getText());
+		 this.em.flush();
+		 System.out.println("Day updated: " + day.getIddays());
+	 }
+	 
+	 public List<Calendar> listAllCalendars(){
+
+			TypedQuery<Calendar> theQuery = em.createQuery("SELECT c FROM Calendar c", Calendar.class);
+			List<Calendar> result = theQuery.getResultList();
+			return result;  
+		}
 		 
 }
