@@ -37,9 +37,9 @@ public class CalendarBean implements Serializable {
 	private byte public_;
 	private String background;
 	private Date date;
-
 	private Part file;
 	private String owner;
+	private int tempid;
 
 	public void setOwner(String name) {
 		owner = name;
@@ -95,7 +95,7 @@ public class CalendarBean implements Serializable {
 
 	// Method for creating new calendar
 	public String addCalendar() {
-		
+
 		Calendar tmp = new Calendar();
 		UsersHasCalendarPK tmp2 = new UsersHasCalendarPK();
 		UsersHasCalendar tmp3 = new UsersHasCalendar();
@@ -103,7 +103,7 @@ public class CalendarBean implements Serializable {
 		tmp.setBackground(background);
 		tmp.setBegindate(date);
 		tmp.setPublic_(public_);
-		
+
 		int tmpID = calendarEJB.createCalendar(tmp).getCalendarId();
 		// If it is not public-assign it to user
 		if (public_ == 0) {
@@ -112,8 +112,8 @@ public class CalendarBean implements Serializable {
 			tmp3.setId(tmp2);
 			calendarEJB.addUserHasCalendar(tmp3);
 		}
-		
-		return "home.xhtml";
+
+		return "admin.xhtml";
 	}
 
 	public List<Calendar> allCalendars() {
@@ -138,27 +138,27 @@ public class CalendarBean implements Serializable {
 
 		String path = FacesContext.getCurrentInstance().getExternalContext()
 				.getRealPath("Data");
-			
+
 		try {
 			if(file!=null){
-			InputStream in= file.getInputStream();
-			byte[] data = new byte[in.available()];
-			in.read(data);
-			FileOutputStream out = new FileOutputStream(new File(path
-					+ "picture" + data.hashCode() + calendarName.hashCode()
-					+ ".jpeg"));
-			setBackground("Datapicture" + data.hashCode()
-					+ calendarName.hashCode() + ".jpeg");
-			System.out.println(background);
-			in.close();
-			out.write(data);
-			out.close();
+				InputStream in= file.getInputStream();
+				byte[] data = new byte[in.available()];
+				in.read(data);
+				FileOutputStream out = new FileOutputStream(new File(path
+						+ "picture" + data.hashCode() + calendarName.hashCode()
+						+ ".jpeg"));
+				setBackground("Datapicture" + data.hashCode()
+						+ calendarName.hashCode() + ".jpeg");
+				System.out.println(background);
+				in.close();
+				out.write(data);
+				out.close();
 			}
 			else
 			{
-				 System.out.println("No background picture chosen!");
+				System.out.println("No background picture chosen!");
 			}
-			
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,15 +167,15 @@ public class CalendarBean implements Serializable {
 
 	//Method used for setting the background of the calendar
 	public String showBackground(int calID) {
-		
+
 		Calendar cal = new Calendar();
 		background =null;
 		cal = calendarEJB.getCalendarById(calID);
-		
-			System.out.println(cal.getBackground() + " " + calID + "as ");
-			setBackground(cal.getBackground());
-		
-			return "calendar.xhtml";
+
+		System.out.println(cal.getBackground() + " " + calID + "as ");
+		setBackground(cal.getBackground());
+
+		return "calendar.xhtml";
 	}
 
 	public ArrayList<Calendar> getPublicCal(){
@@ -192,5 +192,79 @@ public class CalendarBean implements Serializable {
 		}
 		return pubCal;
 	}
-	
+
+	/**
+	 * method to delete a calendar, its users and days
+	 * @param calId
+	 * @return
+	 */
+	public String delete(int calId){
+		System.out.println("deleting calendar "+ calId);
+		calendarEJB.removeCalendarDays(calId);
+		calendarEJB.removeUserHasCalendar(calId);
+		calendarEJB.deleteCalendar(calId);
+		return "admin.xhtml";
+	}
+
+
+	/**
+	 * method called by editxhtml
+	 * persists the bean
+	 * @param dayId
+	 * @return
+	 */
+	public String updateCalendar(){
+		UsersHasCalendarPK tmp2 = new UsersHasCalendarPK();
+		UsersHasCalendar tmp3 = new UsersHasCalendar();
+		Calendar tmp = new Calendar();
+		tmp=calendarByID(tempid);
+
+		tmp.setCalendarId(tempid);
+		tmp.setBackground(background);
+		tmp.setBegindate(date);
+		tmp.setCalendarname(calendarName);
+		tmp.setPublic_(public_);
+
+
+		if (public_ == 0) {
+			tmp2.setCalendarsCalendarId(tempid);
+			tmp2.setUsersUsername(owner);
+			tmp3.setId(tmp2);
+			calendarEJB.updateCalendar(tmp);
+			calendarEJB.addUserHasCalendar(tmp3);
+		}
+		else{
+			calendarEJB.updateCalendar(tmp);
+		}
+		return "admin.xhtml";
+	}
+
+	/**
+	 * method called from the show admin xhtml redirects to editxhtml
+	 * sets the bean
+	 * @param dayId
+	 * @return
+	 */
+	public String editCalendar(int calId){
+		tempid=calId;
+		Calendar tmp=new Calendar();
+		tmp=calendarByID(calId);
+		this.background=tmp.getBackground();
+		this.calendarID=tmp.getCalendarId();
+		this.calendarName=tmp.getCalendarname();
+		this.date=tmp.getBegindate();
+		this.public_=tmp.getPublic_();
+
+		try {
+			UsersHasCalendar tmp3 = new UsersHasCalendar();
+			tmp3=calendarEJB.getCalendarsUser(calId);
+			this.owner=tmp3.getId().getUsersUsername();
+		} catch (NullPointerException e) {
+			System.out.println("No user assigned must be public");
+		}
+
+
+		return "editCalendar.xhtml";
+	}
+
 }
