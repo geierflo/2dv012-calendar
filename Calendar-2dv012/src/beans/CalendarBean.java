@@ -5,13 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
+
 import model.Calendar;
 import model.UsersHasCalendar;
 import model.UsersHasCalendarPK;
@@ -175,19 +178,19 @@ public class CalendarBean implements Serializable {
 			return "calendar.xhtml";
 	}
 
-	public String getPublicCal(){
+	public ArrayList<Calendar> getPublicCal(){
 		List<Calendar> allCal = calendarEJB.listAllCalendars();
-		
+		ArrayList<Calendar> pubCal = new ArrayList<Calendar>();
 		
 		for(int i = 0; i<allCal.size();i++){
 			
-			if(allCal.get(i).getCalendarId()==1){
-				return showBackground(allCal.get(i).getCalendarId());
+			if(allCal.get(i).getPublic_()==1){
+				 pubCal.add(allCal.get(i));
 				
 			}
 			
 		}
-		return "home.xhtml";
+		return pubCal;
 	}
 	
 }
