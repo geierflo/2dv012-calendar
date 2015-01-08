@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Advent Calendar</title>
+	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="shortcut icon" href="favicon.ico"></link>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="scripts.js"></script>
+</h:head>
+
+<h:body>
+
+	<div id="wrapper">
+		<div id="header"></div>
+
+		<div id="container">
+			<div id="content">
+
+				<h1 id="Days">
+					<script>showRemaining()</script>
+				</h1>
+
+				<img src="resources/images.ico" alt="" align="left"
+					style="width: 325px; height: 219px" />
+
+
+			</div>
+
+			<div id="sidebar">
+				<h:form>
+					<h2>Public calendars</h2>
+					<h:dataTable
+						value="#{calendarBean.publicCal}"
+						var="calendar">
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							
+							<h:commandLink action="#{calendarBean.showBackground(calendar.calendarId)}" value="#{calendar.calendarname}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date</f:facet>
+							#{calendar.begindate}
+							</h:column>
+					</h:dataTable>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+</h:body>
+</html>
