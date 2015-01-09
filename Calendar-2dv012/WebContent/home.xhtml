@@ -40,13 +40,13 @@
 
 			<div id="sidebar">
 				<h:form id="loginForm">
-					<h:outputText value="Username: " />
+					<h:outputText value="Username: " /><br />
 					<h:inputText id="inputName" value="#{userBean.username}"
 						required="true" requiredMessage="Name field must not be empty" />
 
 					<h:message for="inputName" style="color:red" />
 					<br></br>
-					<h:outputText value="Password :" />
+					<h:outputText value="Password: " /><br />
 					<h:inputSecret id="inputPassword" value="#{userBean.password}"
 						required="true" requiredMessage="Password field must not be empty" />
 					<h:message for="inputPassword" style="color:red" />
