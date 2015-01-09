@@ -123,7 +123,8 @@ public class UserBean implements Serializable {
 			else 
 				return "success.xhtml";
 		}else{
-			return "unsuccess.xhtml";
+			FacesContext.getCurrentInstance().addMessage("loginForm:bottom", new FacesMessage("Wrong Username or password", "Wrong Username or password"));
+			return "";
 		}
 
 	}
