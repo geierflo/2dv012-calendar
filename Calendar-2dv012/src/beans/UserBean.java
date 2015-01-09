@@ -5,8 +5,12 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+
+import com.sun.xml.internal.txw2.Document;
 
 import model.User;
 import ejb.UserEJB;
@@ -27,10 +31,22 @@ public class UserBean implements Serializable {
 	private String username;
 	private String password;
 	private String role;
+	private User loggedInUser;
+	private String url;
+
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public String getUsername() {
 		return username;
 	}
+
 
 	public void setUsername(String username) {
 		this.username = username;
@@ -65,10 +81,14 @@ public class UserBean implements Serializable {
 		us.setUsername(username);
 		us.setPassword(password);
 		us.setRole("User");
-		if(user.createUser(us))
+		if(user.createUser(us)){
+			loggedInUser=us;
 			return "success.xhtml";
+		}
 
-		return "unsuccess.xhtml";
+
+		FacesContext.getCurrentInstance().addMessage("registerForm2:uname", new FacesMessage("Username already taken", "Username already taken"));
+		return "";
 	}
 
 	/**
@@ -83,15 +103,21 @@ public class UserBean implements Serializable {
 		if(user.createUser(us))
 			return "admin.xhtml";
 
-		return "unsuccess.xhtml";
+		FacesContext.getCurrentInstance().addMessage("registerForm:fname", new FacesMessage("Username already taken", "Username already taken"));
+		return "";
 	}
 
 	public String logIn(){
 		User us = new User();
 		us.setUsername(username);
 		us.setPassword(password);
-		us.setRole(user.findUserByName(username).getRole());
+		us.setRole("User");
+		System.out.println(us.getUsername());
+
 		if(user.login(us)=="output"){
+			us.setRole(user.findUserByName(username).getRole());
+			loggedInUser=us;
+
 			if (us.getRole().equals("Admin"))		
 				return "admin.xhtml";
 			else 
@@ -102,15 +128,49 @@ public class UserBean implements Serializable {
 
 	}
 
-	public void logout() {  
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();  
-		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
-		user=null;
+	public String loggedIn(){
+		HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		String urli=origRequest.getRequestURL().toString();
+		urli=urli.substring(urli.lastIndexOf("/") + 1);
+		System.out.println(urli);
+
+		//redirection mechanisms for logged in users
+		if(urli.contains("home.xhtml")){
+			if (loggedInUser!=null){
+				System.out.println(loggedInUser.getRole());
+				if(loggedInUser.getRole().contentEquals("Admin"))
+					return "admin.xhtml";
+				else
+					return "success.xhtml";
+			}
+			else 
+				return"";
+		}
+		else if(urli.contains("bye.xhtml"))
+			return"";
+
+		//security check for address manipulation
+		else if(loggedInUser==null&&(!urli.contains("bye")&&!urli.contains("register")&&!urli.contains("home")&&!urli.contains("public")&&!urli.contains("news")&&!urli.contains("contact")&&!urli.contains("about")))
+			return"noaccess.xhtml";
+		else if ((loggedInUser!=null&&loggedInUser.getRole().contentEquals("User"))&&(urli.contains("admin")||urli.contains("creat")||urli.contains("edit")))
+			return"noaccess.xhtml";
+		else return"";
+
+
+	}
+
+	public String logout() {  
+//				FacesContext.getCurrentInstance().getExternalContext().invalidateSession();  
+//				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
+		//user=null;
 		username=null;
 		password=null;
 		role=null;
+		loggedInUser=null;
+
+		return"bye.xhtml";
 	}  
-	
+
 	/**
 	 * method to delete a user, its users and days
 	 * @param calId
@@ -122,7 +182,7 @@ public class UserBean implements Serializable {
 		user.deleteUser(username);
 		return "admin.xhtml";
 	}
-	
+
 	public String editUser(String username){
 		System.out.println("editing user "+ username);
 		User temp= user.findUserByName(username);
@@ -131,10 +191,10 @@ public class UserBean implements Serializable {
 		this.role=temp.getRole();
 		return "editUser.xhtml";
 	}
-	
+
 	public String updateUser(){
 		System.out.println("updating user "+ username);
-		
+
 		User tmp= user.findUserByName(username);
 		tmp.setUsername(username);
 		tmp.setPassword(user.hash(password));
@@ -152,6 +212,6 @@ public class UserBean implements Serializable {
 
 		return "password.xhtml";
 	}
-	
-	
+
+
 }

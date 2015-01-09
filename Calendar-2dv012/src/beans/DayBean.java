@@ -110,7 +110,6 @@ public class DayBean implements Serializable {
 	 * @return
 	 */
 	public String showCalendarDays(int calendarId){
-		System.out.println("and why the fuck are you not working??");
 		this.tempid=calendarId;
 		return "ShowCalendarDays.xhtml"; 
 	}
