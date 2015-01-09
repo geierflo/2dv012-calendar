@@ -9,7 +9,8 @@
 <h:head>
 	<title>Advent Calendar</title>
 	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
-	<link rel="shortcut icon" href="favicon.ico"></link><script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<link rel="shortcut icon" href="favicon.ico"></link>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="scripts.js"></script>
 </h:head>
 
@@ -24,7 +25,12 @@
 <h1>Welcome to the online advent calendar</h1>
 <br />
 				<h2 id="Days">
-					<script>showRemaining()</script>
+					<script>
+					var header = "Only <I>" + showRemaining()  + "</I> "
+					header += " days until Christmas!"
+					document.write(header)
+
+					</script>
 				</h2>
 				<br />
 				<h:graphicImage value="Resources/santa.png"
