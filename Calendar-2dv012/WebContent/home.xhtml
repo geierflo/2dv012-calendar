@@ -43,16 +43,19 @@
 					<h:outputText value="Username: " /><br />
 					<h:inputText id="inputName" value="#{userBean.username}"
 						required="true" requiredMessage="Name field must not be empty" />
-
-					<h:message for="inputName" style="color:red" />
 					<br></br>
+					<h:message for="inputName" style="color:red" />
+					
 					<h:outputText value="Password: " /><br />
 					<h:inputSecret id="inputPassword" value="#{userBean.password}"
 						required="true" requiredMessage="Password field must not be empty" />
-					<h:message for="inputPassword" style="color:red" />
 					<br></br>
-					<h:commandButton value="Log In" action="#{userBean.logIn}" />
-					<br></br><br></br>
+					<h:message for="inputPassword" style="color:red" />
+					
+					<h:commandButton value="Log In" id="bottom" action="#{userBean.logIn}" />
+					<br></br>
+					<h:message  for="bottom" style="color:red;margin:8px;" />
+					<br></br>
 					<h:outputLabel value="Not a member yet? " />
 					<h:outputLink value="register.xhtml">Sign Up</h:outputLink>
 				</h:form>
