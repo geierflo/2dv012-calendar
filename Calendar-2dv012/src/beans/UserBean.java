@@ -134,6 +134,9 @@ public class UserBean implements Serializable {
 		urli=urli.substring(urli.lastIndexOf("/") + 1);
 		System.out.println(urli);
 
+		if(urli.contains("bye.xhtml"))
+			return"";
+
 		//redirection mechanisms for logged in users
 		if(urli.contains("home.xhtml")){
 			if (loggedInUser!=null){
@@ -146,8 +149,6 @@ public class UserBean implements Serializable {
 			else 
 				return"";
 		}
-		else if(urli.contains("bye.xhtml"))
-			return"";
 
 		//security check for address manipulation
 		else if(loggedInUser==null&&(!urli.contains("bye")&&!urli.contains("register")&&!urli.contains("home")&&!urli.contains("public")&&!urli.contains("news")&&!urli.contains("contact")&&!urli.contains("about")))
@@ -160,8 +161,8 @@ public class UserBean implements Serializable {
 	}
 
 	public String logout() {  
-//				FacesContext.getCurrentInstance().getExternalContext().invalidateSession();  
-//				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
+		//				FacesContext.getCurrentInstance().getExternalContext().invalidateSession();  
+		//				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
 		//user=null;
 		username=null;
 		password=null;
