@@ -26,45 +26,13 @@
 
 		<div id="container">
 			<div id="content">
+				<h1>Warning:</h1>
 
-				<h:form>
-					<h3>Days of calendar:</h3>
-					<h:dataTable value="#{dayBean.calendarDays()}" var="day">
+				<h3>You have not enough accessrights to visit the selected
+					website! Back off!</h3>
+				<br /> <br /> <img src="resources/backoff.jpg" alt="" align="left"
+					style="width: 325px; height: 219px" />
 
-						<h:column>
-							<f:facet name="header">ID</f:facet>
-							#{day.iddays}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Date</f:facet>
-							#{day.date}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Text</f:facet>
-							#{day.text}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Link</f:facet>
-							#{day.link}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Calendar ID</f:facet>
-							#{day.calendars_calendar_id}
-							</h:column>
-						<h:column>
-							<f:facet name="header">Edit</f:facet>
-							<h:commandButton action="#{dayBean.editDay(day.iddays)}"
-								value="#{day.iddays}" image="resources/edit.png" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Delete</f:facet>
-							<h:commandButton action="#{dayBean.delete(day.iddays)}"
-								value="#{day.iddays}" image="resources/delete.png" />
-						</h:column>
-
-					</h:dataTable>
-					<a href="createDay.xhtml"> Create Day</a>
-				</h:form>
 				<td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
 			</div>
 

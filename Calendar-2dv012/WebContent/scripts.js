@@ -1,7 +1,7 @@
-// Loads the header and footer xhtmls into #header and #footer directly
+//Loads the header and footer xhtmls into #header and #footer directly
 $(function(){
-  $("#header").load("header.xhtml"); 
-  $("#footer").load("footer.xhtml"); 
+	$("#header").load("header.xhtml"); 
+	$("#footer").load("footer.xhtml"); 
 });
 
 function showRemaining() {
@@ -19,8 +19,4 @@ function showRemaining() {
 	    var diff = nextXmas.getTime() - today.getTime()
 	    diff = Math.floor(diff/oneDay)
 	    return diff
-
 }
-
-
-
