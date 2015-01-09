@@ -41,15 +41,34 @@
 
 						<tr>
 							<td><h:outputText value="Date (dd-mm-yyyy):" /></td>
-							<td><h:selectOneListbox id="date" value="#{dayBean.date}" converter="javax.faces.DateTime">
+							<td><h:selectOneMenu id="date" value="#{dayBean.date}" converter="javax.faces.DateTime">
 									<f:selectItem id="item1" itemLabel="01-12-2014" itemValue="01-12-2014" />
 									<f:selectItem id="item2" itemLabel="02-12-2014"	itemValue="02-12-2014" />
 									<f:selectItem id="item3" itemLabel="03-12-2014"	itemValue="03-12-2014" />
 									<f:selectItem id="item4" itemLabel="04-12-2014"	itemValue="04-12-2014" />
-									
-										
+									<f:selectItem id="item5" itemLabel="05-12-2014" itemValue="05-12-2014" />
+									<f:selectItem id="item6" itemLabel="06-12-2014"	itemValue="06-12-2014" />
+									<f:selectItem id="item7" itemLabel="07-12-2014"	itemValue="07-12-2014" />
+									<f:selectItem id="item8" itemLabel="08-12-2014"	itemValue="08-12-2014" />
+									<f:selectItem id="item9" itemLabel="09-12-2014" itemValue="09-12-2014" />
+									<f:selectItem id="item10" itemLabel="10-12-2014"	itemValue="10-12-2014" />
+									<f:selectItem id="item11" itemLabel="11-12-2014"	itemValue="11-12-2014" />
+									<f:selectItem id="item12" itemLabel="12-12-2014"	itemValue="12-12-2014" />
+									<f:selectItem id="item13" itemLabel="13-12-2014" itemValue="13-12-2014" />
+									<f:selectItem id="item14" itemLabel="14-12-2014"	itemValue="14-12-2014" />
+									<f:selectItem id="item15" itemLabel="15-12-2014"	itemValue="15-12-2014" />
+									<f:selectItem id="item16" itemLabel="16-12-2014"	itemValue="16-12-2014" />
+									<f:selectItem id="item17" itemLabel="17-12-2014" itemValue="17-12-2014" />
+									<f:selectItem id="item18" itemLabel="18-12-2014"	itemValue="18-12-2014" />
+									<f:selectItem id="item19" itemLabel="19-12-2014"	itemValue="19-12-2014" />
+									<f:selectItem id="item20" itemLabel="20-12-2014"	itemValue="20-12-2014" />
+									<f:selectItem id="item21" itemLabel="21-12-2014" itemValue="21-12-2014" />
+									<f:selectItem id="item22" itemLabel="22-12-2014"	itemValue="22-12-2014" />
+									<f:selectItem id="item23" itemLabel="23-12-2014"	itemValue="23-12-2014" />
+									<f:selectItem id="item24" itemLabel="24-12-2014"	itemValue="24-12-2014" />
+							
 									<f:convertDateTime pattern="dd-mm-yyyy" />	
-								</h:selectOneListbox></td>
+								</h:selectOneMenu></td>
 
 							<td><h:message for="date" style="color:red" /></td>
 
