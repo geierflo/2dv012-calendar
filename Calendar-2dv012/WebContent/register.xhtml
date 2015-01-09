@@ -10,8 +10,8 @@
 	<title>Advent Calendar</title>
 	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
 	<link rel="shortcut icon" href="favicon.ico"></link>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="scripts.js"></script>
+	<script src="Resources/jquery-latest.min.js"></script>
+	<script src="Resources/scripts.js"></script>
 </h:head>
 
 <h:body><div><input type="hidden" name="logged" id="logid" value="#{userBean.loggedIn()}"> </input>	</div><script>if(document.getElementById('logid').value!=document.URL.substring(document.URL.lastIndexOf("/")+1)&amp;&amp;document.getElementById('logid').value!="")  window.location.href= document.getElementById('logid').value;</script>
@@ -27,13 +27,13 @@
 				<h:form id="registerForm2">
 					<table>
 						<tr>
-							<td><h:outputText value="Enter Your First Name:" /></td>
+							<td><h:outputText value="Enter your desired username: " /></td>
 							<td><h:inputText id="uname" value="#{userBean.username}"
 									required="true" requiredMessage="Please enter your username" /></td>
 							<td><h:message for="uname" style="color:red" /></td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Enter Password :" /></td>
+							<td><h:outputText value="Enter your desired password: " /></td>
 							<td><h:inputSecret id="psw" value="#{userBean.password}"
 									required="true" requiredMessage="Please enter your password" /></td>
 							<td><h:message for="psw" style="color:red" /></td>

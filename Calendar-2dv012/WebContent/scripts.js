@@ -19,4 +19,5 @@ function showRemaining() {
 	    var diff = nextXmas.getTime() - today.getTime()
 	    diff = Math.floor(diff/oneDay)
 	    return diff
+
 }
