@@ -40,7 +40,7 @@ public class CalendarBean implements Serializable {
 	private Part file;
 	private String owner;
 	private int tempid;
-
+	
 	public void setOwner(String name) {
 		owner = name;
 	}
@@ -78,7 +78,13 @@ public class CalendarBean implements Serializable {
 	}
 
 	public String getBackground() {
-		return background;
+		
+		if(this.background != null){
+			return background;
+		}
+		else{
+			return "Resources/defaultBackground.jpg";
+		}
 	}
 
 	public void setBackground(String background) {
