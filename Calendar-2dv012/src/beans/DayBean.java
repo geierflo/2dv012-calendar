@@ -32,6 +32,14 @@ public class DayBean implements Serializable {
 	private int calendars_calendar_id;
 	private int tempid;
 	
+	public int getTempid() {
+		return tempid;
+	}
+
+	public void setTempid(int tempid) {
+		this.tempid = tempid;
+	}
+
 	public int getIddays() {
 		return iddays;
 	}
