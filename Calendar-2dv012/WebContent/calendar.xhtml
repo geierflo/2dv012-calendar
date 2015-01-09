@@ -40,7 +40,6 @@
         <ui:repeat value="#{dayBean.calendarDays()}" var="day">
             <li class="available" >
             <a href="#{day.link}" target="_blank">
-            <h:outputText value="#{calendarBean.background}"></h:outputText>
             <time class="door" datetime="#{day.date}">
           	</time>
             </a>
