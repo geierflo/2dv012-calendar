@@ -5,29 +5,22 @@ $(function(){
 });
 
 function showRemaining() {
-	
-	var end = new Date('12/23/2014 00:00 AM');
-	var _second = 1000;
-	var _minute = _second * 60;
-	var _hour = _minute * 60;
-	var _day = _hour * 24;
-	var timer;
-    var now = new Date();
-    var distance = end - now;
-   
-    var days = Math.floor(distance / _day);
-    var hours = Math.floor((distance % _day) / _hour);
-    var minutes = Math.floor((distance % _hour) / _minute);
-    var seconds = Math.floor((distance % _minute) / _second);
 
-	document.getElementById('Days').innerHTML = "Time left until cristmas: " 
-    document.getElementById('Days').innerHTML += days + 'days ';
-    document.getElementById('Days').innerHTML += hours + 'hrs ';
-    document.getElementById('Days').innerHTML += minutes + 'mins ';
-    document.getElementById('Days').innerHTML += seconds + 'sec ';
-    
-    timer = setInterval(showRemaining, 1000);
+	    var oneMinute = 60 * 1000
+	    var oneHour = oneMinute * 60
+	    var oneDay = oneHour * 24
+	    var today = new Date()
+	    var nextXmas = new Date()
+	    nextXmas.setMonth(11)
+	    nextXmas.setDate(24)
+	    if (today.getMonth() == 11 && today.getDate() > 24) {
+	        nextXmas.setFullYear(nextXmas.getFullYear() + 1)
+	    }
+	    var diff = nextXmas.getTime() - today.getTime()
+	    diff = Math.floor(diff/oneDay)
+	    return diff
 
 }
+
 
 
