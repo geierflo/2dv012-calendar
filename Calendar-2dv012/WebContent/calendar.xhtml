@@ -9,25 +9,49 @@
 <h:head>
 	<title>Advent Calendar</title>
 	<link rel="stylesheet" type="text/css" href="Resources/style.css"></link>
+	<link rel="stylesheet" href="Resources/css/colorbox.css" />
 	<link rel="shortcut icon" href="favicon.ico"></link><script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="Resources/jquery-latest.min.js"></script>
 	<script src="Resources/scripts.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="Resources/jquery.colorbox.js"></script>
 	<link rel="stylesheet" href="Resources/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 	<script type="text/javascript" src="Resources/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-   
-   	<script type="text/javascript">
-	$(document).ready(function() {
-		$(".various").fancybox({
-			maxWidth	: 800,
-			maxHeight	: 600,
-			fitToView	: false,
-			autoSize	: true,
-			closeClick	: false,
-			openEffect	: 'fade',
-			closeEffect	: 'none'
-		});
-	});
-</script>
+   	<style>
+			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+			a:link, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+			h2{font-size:13px; margin:15px 0 0 0;}
+		</style>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
+				$(".ajax").colorbox();
+				$(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+				$(".vimeo").colorbox({iframe:true, innerWidth:500, innerHeight:409});
+				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+				$(".inline").colorbox({inline:true, width:"50%"});
+				$(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+
+				$('.non-retina').colorbox({rel:'group5', transition:'none'})
+				$('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
 </h:head>
 
 <h:body><div><input type="hidden" name="logged" id="logid" value="#{userBean.loggedIn()}"> </input>	</div><script>if(document.getElementById('logid').value!=document.URL.substring(document.URL.lastIndexOf("/")+1)&amp;&amp;document.getElementById('logid').value!="")  window.location.href= document.getElementById('logid').value;</script>
@@ -58,7 +82,7 @@
     <ul class="doors">
         <ui:repeat value="#{dayBean.calendarDays(calendarBean.calendarID)}" var="day">
             <li class="available" >
-            <a class="various" href="#{day.link}" title="#{day.text}">
+            <a class="#{day.text}" href="#{day.link}" title="#{day.text}">
             <time class="door" datetime="#{day.date}">
           	</time>
             </a>
