@@ -175,4 +175,10 @@ public class DayBean implements Serializable {
 		
 		return "editDay.xhtml";
 	}
+	
+	public Day linkByID(int iddays){
+		return dayEJB.getDayById(iddays);
+	}
+	
+	
 }

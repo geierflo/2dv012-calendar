@@ -42,6 +42,7 @@
 			    float:left;
 			    background-color:#fff;
 			    background-image:url(#{calendarBean.background});
+			    background-size: 100% 100%;
 			    border-top:1px solid #fff;
 			    min-height:500px;
 			} 
@@ -55,7 +56,7 @@
 			<div id="calendar">			
   
     <ul class="doors">
-        <ui:repeat value="#{dayBean.calendarDays()}" var="day">
+        <ui:repeat value="#{dayBean.calendarDays(calendarBean.calendarID)}" var="day">
             <li class="available" >
             <a class="various" href="#{day.link}" title="#{day.text}">
             <time class="door" datetime="#{day.date}">
