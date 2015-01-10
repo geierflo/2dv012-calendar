@@ -69,6 +69,8 @@ public class DayBean implements Serializable {
 	}
 
 	public void setLink(String link) {
+		if(link.contains("watch?v="))
+			link=link.replace("watch?v=", "v/");
 		this.link = link;
 	}
 	
