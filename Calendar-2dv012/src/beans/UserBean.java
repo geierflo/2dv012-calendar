@@ -10,8 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-import com.sun.xml.internal.txw2.Document;
-
 import model.User;
 import ejb.UserEJB;
 
@@ -112,7 +110,6 @@ public class UserBean implements Serializable {
 		us.setUsername(username);
 		us.setPassword(password);
 		us.setRole("User");
-		System.out.println(us.getUsername());
 
 		if(user.login(us)=="output"){
 			us.setRole(user.findUserByName(username).getRole());
@@ -133,7 +130,6 @@ public class UserBean implements Serializable {
 		HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		String urli=origRequest.getRequestURL().toString();
 		urli=urli.substring(urli.lastIndexOf("/") + 1);
-		System.out.println(urli);
 
 		if(urli.contains("bye.xhtml"))
 			return"";
@@ -141,7 +137,6 @@ public class UserBean implements Serializable {
 		//redirection mechanisms for logged in users
 		if(urli.contains("home.xhtml")){
 			if (loggedInUser!=null){
-				System.out.println(loggedInUser.getRole());
 				if(loggedInUser.getRole().contentEquals("Admin"))
 					return "admin.xhtml";
 				else
@@ -162,9 +157,6 @@ public class UserBean implements Serializable {
 	}
 
 	public String logout() {  
-		//				FacesContext.getCurrentInstance().getExternalContext().invalidateSession();  
-		//				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/home.xhtml");  
-		//user=null;
 		username=null;
 		password=null;
 		role=null;

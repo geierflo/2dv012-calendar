@@ -80,6 +80,7 @@ public class CalendarBean implements Serializable {
 	public String getBackground() {
 		
 		if(this.background != null){
+			System.out.println(background+ " " + calendarID);
 			return background;
 		}
 		else{
@@ -177,7 +178,13 @@ public class CalendarBean implements Serializable {
 		Calendar cal = new Calendar();
 		background =null;
 		cal = calendarEJB.getCalendarById(calID);
-
+		this.calendarID=cal.getCalendarId();
+		this.calendarName=cal.getCalendarname();
+		this.public_=cal.getPublic_();
+		this.background=cal.getBackground();
+		this.date=cal.getBegindate();
+		this.tempid=cal.getCalendarId();
+		
 		System.out.println(cal.getBackground() + " " + calID + "as ");
 		setBackground(cal.getBackground());
 
@@ -268,7 +275,6 @@ public class CalendarBean implements Serializable {
 		} catch (NullPointerException e) {
 			System.out.println("No user assigned must be public");
 		}
-
 
 		return "editCalendar.xhtml";
 	}
