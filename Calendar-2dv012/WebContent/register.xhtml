@@ -29,14 +29,36 @@
 						<tr>
 							<td><h:outputText value="Enter your desired username: " /></td>
 							<td><h:inputText id="uname" value="#{userBean.username}"
-									required="true" requiredMessage="Please enter your username" /></td>
+									required="true" requiredMessage="Please enter a username" /></td>
 							<td><h:message for="uname" style="color:red" /></td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Enter your desired password: " /></td>
-							<td><h:inputSecret id="psw" value="#{userBean.password}"
-									required="true" requiredMessage="Please enter your password" /></td>
+							<td>
+								<h:outputLabel for="password" value="Enter your desired password: " />							
+							</td>
+							<td>
+								<h:inputSecret id="password" value="#{userBean.password}" required="true" requiredMessage="Please enter your password">
+									<f:validator validatorId="confirmPasswordValidator" />
+    								<f:attribute name="confirm" value="#{confirmPassword.submittedValue}" />
+    								<f:ajax event="blur" execute="password confirm" render="m_password" />
+    								</h:inputSecret>
+									<h:message id="m_password" for="password" />
+									</td>
 							<td><h:message for="psw" style="color:red" /></td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel for="confirm" value="Password (again): " />
+							</td>
+							<td>
+							<h:inputSecret id="confirm" binding="#{confirmPassword}" required="true">
+    						<f:ajax event="blur" execute="password confirm" render="m_password m_confirm" />
+							</h:inputSecret>
+							</td>
+							<h:message id="m_confirm" for="confirm" />					
+							<td>
+							<h:message for="psw" style="color:red" />
+							</td>
 						</tr>
 						<tr>
 							<td />
