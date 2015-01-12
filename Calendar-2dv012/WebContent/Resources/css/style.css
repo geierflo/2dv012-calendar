@@ -176,6 +176,13 @@ margin-top: 0;
   background-color: rgba(255,255,255,0.3);
 }
 
+
+.doors li .door:hover {
+	
+	background-color:transparent;
+	
+	}
+
 .doors li a{
   display: block;
   text-decoration: none;
