@@ -25,6 +25,7 @@ public class UserBean implements Serializable {
 
 	@EJB
 	private UserEJB user;
+
 	private String username;
 	private String password;
 	private String role;
@@ -97,11 +98,9 @@ public class UserBean implements Serializable {
 		us.setUsername(username);
 		us.setPassword(password);
 		us.setRole(role);
-		if(user.createUser(us)){
-			
-			this.username=loggedInUser.getUsername();
+		if(user.createUser(us))
 			return "admin.xhtml";
-		}
+
 		FacesContext.getCurrentInstance().addMessage("registerForm:fname", new FacesMessage("Username already taken", "Username already taken"));
 		return "";
 	}
@@ -127,11 +126,6 @@ public class UserBean implements Serializable {
 
 	}
 
-	/**
-	 * method that checks if a user is logged in 
-	 * redirects the user from the home.xhtml to either admin or success and prevents anonymous user and user to visit pages without permission
-	 * @return
-	 */
 	public String loggedIn(){
 		HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		String urli=origRequest.getRequestURL().toString();
@@ -203,7 +197,6 @@ public class UserBean implements Serializable {
 		user.updateUser(tmp);
 		return "home.xhtml";
 	}
-	
 	public String password(){
 		System.out.println("updating password for "+ username);
 		User temp= user.findUserByName(username);
