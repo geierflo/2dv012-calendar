@@ -29,7 +29,7 @@ public class Calendar implements Serializable {
 	private String calendarname;
 
 	@Column(name="public")
-	private byte public_;
+	private boolean public_;
 
 	public Calendar() {
 	}
@@ -66,12 +66,14 @@ public class Calendar implements Serializable {
 		this.calendarname = calendarname;
 	}
 
-	public byte getPublic_() {
+	public boolean getPublic_() {
 		return this.public_;
 	}
-
-	public void setPublic_(byte public_) {
-		this.public_ = public_;
+	
+	public void setPublic_(boolean public2){
+		this.public_=public2;
 	}
+
+
 
 }
