@@ -54,8 +54,8 @@ public class Calendar implements Serializable {
 		return this.begindate;
 	}
 
-	public void setBegindate(Date begindate) {
-		this.begindate = begindate;
+	public void setBegindate(Date date) {
+		this.begindate = date;
 	}
 
 	public String getCalendarname() {
