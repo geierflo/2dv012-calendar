@@ -34,7 +34,7 @@ public class CalendarBean implements Serializable {
 
 	private String calendarName;
 	private int calendarID;
-	private byte public_;
+	private boolean public_;
 	private String background;
 	private Date date;
 	private Part file;
@@ -70,11 +70,11 @@ public class CalendarBean implements Serializable {
 		this.calendarID = calendarID;
 	}
 
-	public byte getPublic_() {
+	public boolean getPublic_() {
 		return public_;
 	}
 
-	public void setPublic_(byte public_) {
+	public void setPublic_(boolean public_) {
 		this.public_ = public_;
 	}
 
@@ -114,7 +114,7 @@ public class CalendarBean implements Serializable {
 
 		int tmpID = calendarEJB.createCalendar(tmp).getCalendarId();
 		// If it is not public-assign it to user
-		if (public_ == 0) {
+		if (public_ == true) {
 			tmp2.setCalendarsCalendarId(tmpID);
 			tmp2.setUsersUsername(owner);
 			tmp3.setId(tmp2);
@@ -197,7 +197,7 @@ public class CalendarBean implements Serializable {
 		
 		for(int i = 0; i<allCal.size();i++){
 			
-			if(allCal.get(i).getPublic_()==1){
+			if(allCal.get(i).getPublic_()==false){
 				 pubCal.add(allCal.get(i));
 				
 			}
@@ -239,7 +239,7 @@ public class CalendarBean implements Serializable {
 		tmp.setPublic_(public_);
 
 
-		if (public_ == 0) {
+		if (public_ == true) {
 			tmp2.setCalendarsCalendarId(tempid);
 			tmp2.setUsersUsername(owner);
 			tmp3.setId(tmp2);
