@@ -4,7 +4,7 @@ html {
 
 body {
     
-    background-image: url("snowflake.png");
+    background-image: url("../snowflake.png");
     background-repeat: repeat;
     font-family:"Segoe UI";
     color:#c00;
@@ -31,7 +31,7 @@ body {
 
 #logo {
     
-    background-image: url("logo.jpg");
+    background-image: url("../logo.jpg");
     height:150px;
     
 }

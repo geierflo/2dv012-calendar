@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import beans.UserBean;
 import model.Calendar;
 import model.Day;
 import model.UsersHasCalendar;
