@@ -51,8 +51,8 @@
 								<h:outputLabel for="confirm" value="Password (again): " />
 							</td>
 							<td>
-							<h:inputSecret id="confirm" binding="#{confirmPassword}" required="true">
-    						<f:ajax event="blur" execute="password confirm" render="m_password m_confirm" />
+							<h:inputSecret id="confirm" binding="#{confirmPassword}" required="true" requiredMessage="Please enter the password again">
+    						<f:ajax event="keyup" execute="password confirm" render="m_password m_confirm" />
 							</h:inputSecret>
 							</td>
 							<h:message id="m_confirm" for="confirm" />					
