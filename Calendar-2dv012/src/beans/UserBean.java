@@ -98,8 +98,11 @@ public class UserBean implements Serializable {
 		us.setUsername(username);
 		us.setPassword(password);
 		us.setRole(role);
-		if(user.createUser(us))
+		if(user.createUser(us)){
+			this.username=loggedInUser.getUsername();
 			return "admin.xhtml";
+		}
+
 
 		FacesContext.getCurrentInstance().addMessage("registerForm:fname", new FacesMessage("Username already taken", "Username already taken"));
 		return "";
