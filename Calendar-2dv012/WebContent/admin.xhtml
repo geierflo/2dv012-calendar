@@ -14,14 +14,18 @@
 	<script src="Resources/scripts.js"></script>
 </h:head>
 
+<f:event listener="#{userBean.isAdmin}" type="preRenderView" />
 
-<h:body><div><input type="hidden" name="logged" id="logid" value="#{userBean.loggedIn()}"> </input>	</div><script>if(document.getElementById('logid').value!=document.URL.substring(document.URL.lastIndexOf("/")+1)&amp;&amp;document.getElementById('logid').value!="")  window.location.href= document.getElementById('logid').value;</script>
+<h:body>
 
 	<div id="wrapper">
 		<div id="header"></div>
 
 		<div id="container">
 			<div id="content">
+			
+				<h:graphicImage value="Resources/santa.png"
+					rendered="#{userBean.role==Admin}" />
 			
 				<h:form>
 					<h3>Calendars:</h3>
