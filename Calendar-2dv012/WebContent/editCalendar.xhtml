@@ -41,15 +41,6 @@
 							<td><h:message for="file" style="color:red" /></td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Date (dd-mm-yyyy):" /></td>
-
-							<td><h:inputText converter="javax.faces.DateTime"
-									value="#{calendarBean.date}" id="date" required="true" requredMessage="Please enter a valid date">
-									<f:convertDateTime pattern="dd-mm-yyyy" />
-								</h:inputText></td>
-							<td><h:message for="date" style="color:red" /></td>
-						</tr>
-						<tr>
 							<td><h:outputText value="Public (0-1):" /></td>
 							<td><h:inputText value="#{calendarBean.public_}" id="public"
 									required="true"
