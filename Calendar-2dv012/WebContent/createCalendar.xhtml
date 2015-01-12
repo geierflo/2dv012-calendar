@@ -12,8 +12,9 @@
 	<link rel="shortcut icon" href="favicon.ico"></link>
 	<script src="Resources/jquery-latest.min.js"></script>
 	<script src="Resources/scripts.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
-	
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" />
+
 </h:head>
 
 <f:event listener="#{userBean.isAdmin}" type="preRenderView" />
@@ -43,14 +44,26 @@
 							<td><h:message for="file" style="color:red" /></td>
 						</tr>
 						<tr>
+							<td><h:outputText value="Year:" /></td>
+							<td><h:selectOneMenu id="date" value="#{calendarBean.date}"
+									converter="javax.faces.DateTime">
+									<f:selectItem id="item1" itemLabel="2014" itemValue="2014" />
+									<f:selectItem id="item2" itemLabel="2015" itemValue="2015" />
+									<f:selectItem id="item3" itemLabel="2016" itemValue="2016" />
+									<f:convertDateTime pattern="yyyy" />
+								</h:selectOneMenu></td>
+							<td><h:message for="date" style="color:red" /></td>
+						</tr>
+						<tr>
 							<td><h:outputText value="Private:" /></td>
-							<td><input type = "checkbox" value="#{calendarBean.public_}" id="public" 
-							onchange="this.form.uname.disabled=!this.checked"/></td>
+							<td><input type="checkbox" value="#{calendarBean.public_}"
+								id="public" onchange="this.form.uname.disabled=!this.checked" /></td>
 							<td><h:message for="public" style="color:red" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="User name:" /></td>
-							<td><input type="text" value="#{calendarBean.owner}" id="uname" disabled="disabled" /></td>
+							<td><input type="text" value="#{calendarBean.owner}"
+								id="uname" disabled="disabled" /></td>
 							<td><h:message for="uname" style="color:red" /></td>
 						</tr>
 						<tr>
