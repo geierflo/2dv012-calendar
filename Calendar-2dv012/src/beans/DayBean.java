@@ -21,6 +21,7 @@ public class DayBean implements Serializable {
 	 * 
 	 */
 	@EJB
+	static
 	DayEJB dayEJB;
 	
 	private static final long serialVersionUID = 1L;
@@ -176,5 +177,24 @@ public class DayBean implements Serializable {
 		this.calendars_calendar_id=tmp.getCalendars_calendar_id();
 		
 		return "editDay.xhtml";
+	}
+	
+	public static String defaultDay(Date date, String text, String link, int calendars_calendar_id){
+		Day tmp = new Day();
+		
+		tmp.setDate(date);
+		tmp.setText(text);
+		tmp.setLink(link);
+		tmp.setCalendars_calendar_id(calendars_calendar_id);
+		List<model.Calendar> temp =dayEJB.listAllCalendars();
+		for (int i = 0; i < temp.size(); i++) {
+			if(temp.get(i).getCalendarId()==calendars_calendar_id){
+				dayEJB.createDay(tmp);
+				return "true";
+			}
+		}
+		System.out.println("No caledar with this ID "+calendars_calendar_id+" in database");
+		FacesContext.getCurrentInstance().addMessage("myForm:calId", new FacesMessage("No caledar with this ID in database", "No caledar with this ID in database"));
+		return"";
 	}
 }

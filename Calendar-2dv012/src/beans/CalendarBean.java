@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,7 @@ import javax.inject.Named;
 import javax.servlet.http.Part;
 
 import model.Calendar;
+import model.Day;
 import model.UsersHasCalendar;
 import model.UsersHasCalendarPK;
 import ejb.CalendarEJB;
@@ -40,8 +43,8 @@ public class CalendarBean implements Serializable {
 	private Part file;
 	private String owner;
 	private int tempid;
-	
-	
+
+
 	public void setOwner(String name) {
 		owner = name;
 	}
@@ -79,7 +82,7 @@ public class CalendarBean implements Serializable {
 	}
 
 	public String getBackground() {
-		
+
 		if(this.background != null){
 			System.out.println(background+ " " + calendarID);
 			return background;
@@ -103,7 +106,7 @@ public class CalendarBean implements Serializable {
 
 	// Method for creating new calendar
 	public String addCalendar() {
-		
+
 		Calendar tmp = new Calendar();
 		UsersHasCalendarPK tmp2 = new UsersHasCalendarPK();
 		UsersHasCalendar tmp3 = new UsersHasCalendar();
@@ -113,6 +116,9 @@ public class CalendarBean implements Serializable {
 		tmp.setPublic_(public_);
 
 		int tmpID = calendarEJB.createCalendar(tmp).getCalendarId();
+
+		createDefaultDays(date,tmpID);
+
 		// If it is not public-assign it to user
 		if (public_ == true) {
 			tmp2.setCalendarsCalendarId(tmpID);
@@ -185,7 +191,7 @@ public class CalendarBean implements Serializable {
 		this.background=cal.getBackground();
 		this.date=cal.getBegindate();
 		this.tempid=cal.getCalendarId();
-		
+
 		setBackground(cal.getBackground());
 
 		return "calendar.xhtml";
@@ -194,14 +200,14 @@ public class CalendarBean implements Serializable {
 	public ArrayList<Calendar> getPublicCal(){
 		List<Calendar> allCal = calendarEJB.listAllCalendars();
 		ArrayList<Calendar> pubCal = new ArrayList<Calendar>();
-		
+
 		for(int i = 0; i<allCal.size();i++){
-			
+
 			if(allCal.get(i).getPublic_()==false){
-				 pubCal.add(allCal.get(i));
-				
+				pubCal.add(allCal.get(i));
+
 			}
-			
+
 		}
 		return pubCal;
 	}
@@ -277,6 +283,35 @@ public class CalendarBean implements Serializable {
 		}
 
 		return "editCalendar.xhtml";
+	}
+
+	public void createDefaultDays(Date date, int calId){
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		int year=0;
+		cal.setTimeInMillis(0);
+
+		if (date.getYear()==114){
+			year=2014;
+		}
+		else if
+		(date.getYear()==115){
+			year=2015;
+		}
+		else
+			year=2016;
+
+		Day tmp = new Day();
+		tmp.setCalendars_calendar_id(calId);
+		tmp.setLink("Resources/candle.jpg");
+		tmp.setText("group3");
+
+		for (int i = 1; i < 25; i++) {
+			cal.set(year, 11, i, 0, 0, 0);
+			Date d = cal.getTime(); // get back a Date object
+			tmp.setDate(d);
+			System.out.println(d.toString());
+			calendarEJB.createDay(tmp);
+		}
 	}
 
 }

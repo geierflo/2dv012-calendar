@@ -144,5 +144,10 @@ public class CalendarEJB {
 			}	
 		}	
 	}
+	
+	public void createDay(Day d){
+		 em.persist(d);
+		 System.out.println("Day added Successfully"); 
+	 }
 
 }
