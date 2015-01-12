@@ -68,7 +68,6 @@ public class Day implements Serializable {
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		   //get current date time with Date()
 		   Date today = new Date();
-		   System.out.println("Today is the "+dateFormat.format(today));
 		if(date.after(today)){
 			this.link="lockedCalendar.xhtml";
 			this.text="iframe";
