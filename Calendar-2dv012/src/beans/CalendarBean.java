@@ -41,6 +41,7 @@ public class CalendarBean implements Serializable {
 	private String owner;
 	private int tempid;
 	
+	
 	public void setOwner(String name) {
 		owner = name;
 	}
@@ -102,7 +103,7 @@ public class CalendarBean implements Serializable {
 
 	// Method for creating new calendar
 	public String addCalendar() {
-
+		
 		Calendar tmp = new Calendar();
 		UsersHasCalendarPK tmp2 = new UsersHasCalendarPK();
 		UsersHasCalendar tmp3 = new UsersHasCalendar();
@@ -185,7 +186,6 @@ public class CalendarBean implements Serializable {
 		this.date=cal.getBegindate();
 		this.tempid=cal.getCalendarId();
 		
-		System.out.println(cal.getBackground() + " " + calID + "as ");
 		setBackground(cal.getBackground());
 
 		return "calendar.xhtml";
