@@ -169,6 +169,8 @@ public class CalendarBean implements Serializable {
 			else
 			{
 				System.out.println("No background picture chosen!");
+				setBackground("Resources/defaultBackground.jpg");
+				
 			}
 
 
